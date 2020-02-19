@@ -508,6 +508,7 @@ function qa_tag_click(link)
 
 function qa_tag_hints(skipcomplete)
 {
+	return;
 	var elem = document.getElementById('tags');
 	var html = '';
 	var completed = false;
