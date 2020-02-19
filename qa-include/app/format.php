@@ -196,7 +196,7 @@ function qa_tag_html($tag, $microdata = false, $favorited = false)
 	$attrs = $microdata ? ' rel="tag"' : '';
 	$class = $favorited ? ' qa-tag-favorited' : '';
 
-	return '<a href="' . $url . '"' . $attrs . ' class="qa-tag-link' . $class . '">' . qa_html($tag) . '</a>';
+	return '<a href="' . $url . '"' . $attrs . ' class="qa-tag-link' . $class . '" style="display: none">' . qa_html($tag) . '</a>';
 }
 
 
