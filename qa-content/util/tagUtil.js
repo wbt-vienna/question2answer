@@ -56,6 +56,9 @@ tagUtil.getPossibleNewRelatives = function(tagIdOrTag, tags) {
 
 tagUtil.getLabel = function (tagIdOrTag, tags) {
     let tag = tagUtil.getTag(tagIdOrTag, tags);
+    if (!tag) {
+        return tagIdOrTag;
+    }
     return tag.labelDE ? tag.labelDE : tag.id;
 };
 
@@ -71,6 +74,15 @@ tagUtil.getColorStyle = function(tagIdOrTag, tags) {
     let color = tagUtil.getColor(tagIdOrTag, tags);
     let highContrastColor = getHighContrastTextColor(color);
     return  `background-color: ${color}; color: ${highContrastColor};`;
+};
+
+tagUtil.getColorStyleObject = function(tagIdOrTag, tags) {
+    let color = tagUtil.getColor(tagIdOrTag, tags);
+    let highContrastColor = getHighContrastTextColor(color);
+    return {
+        "background-color": color,
+        color: highContrastColor
+    }
 };
 
 tagUtil.sortTags = function (tagIdsOrTags, tags, returnIds) {
