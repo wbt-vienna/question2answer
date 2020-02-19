@@ -1210,15 +1210,19 @@ function qa_db_page_full_selectspec($slugorpageid, $ispageid)
  */
 function qa_db_tag_recent_qs_selectspec($voteuserid, $tag, $start, $full = false, $count = null)
 {
-	$count = isset($count) ? min($count, QA_DB_RETRIEVE_QS_AS) : QA_DB_RETRIEVE_QS_AS;
+    $taglist = json_decode(file_get_contents("https://tags.asterics-foundation.org:4000/tag/$tag/selfandchildren/"));
+    $func = function($value) { return $value->id; };
+    $tagids = array_map($func, $taglist);
+
+    $count = isset($count) ? min($count, QA_DB_RETRIEVE_QS_AS) : QA_DB_RETRIEVE_QS_AS;
 
 	require_once QA_INCLUDE_DIR . 'util/string.php';
 
 	$selectspec = qa_db_posts_basic_selectspec($voteuserid, $full);
 
 	// use two tests here - one which can use the index, and the other which narrows it down exactly - then limit to 1 just in case
-	$selectspec['source'] .= " JOIN (SELECT postid FROM ^posttags WHERE wordid=(SELECT wordid FROM ^words WHERE word=$ AND word=$ COLLATE utf8_bin LIMIT 1) ORDER BY postcreated DESC LIMIT #,#) y ON ^posts.postid=y.postid";
-	array_push($selectspec['arguments'], $tag, $tag, $start, $count);
+	$selectspec['source'] .= " JOIN (SELECT postid FROM ^posttags WHERE wordid IN (SELECT wordid FROM ^words WHERE word IN ($)) ORDER BY postcreated DESC LIMIT #,#) y ON ^posts.postid=y.postid";
+	array_push($selectspec['arguments'], $tagids, $start, $count);
 	$selectspec['sortdesc'] = 'created';
 
 	return $selectspec;
