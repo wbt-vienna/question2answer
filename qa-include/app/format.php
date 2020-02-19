@@ -1686,7 +1686,8 @@ function qa_set_display_rules(&$qa_content, $effects)
  */
 function qa_set_up_tag_field(&$qa_content, &$field, $fieldname, $tags, $exampletags, $completetags, $maxtags)
 {
-	$template = '<a href="#" class="qa-tag-link" onclick="return qa_tag_click(this);">^</a>';
+    $qa_content['script_onloads'][] .= 'qa_init_vue_tag_selector();';
+    $template = '<a href="#" class="qa-tag-link" onclick="return qa_tag_click(this);">^</a>';
 
 	$qa_content['script_var']['qa_tag_template'] = $template;
 	$qa_content['script_var']['qa_tag_onlycomma'] = (int)qa_opt('tag_separator_comma');
@@ -1698,16 +1699,18 @@ function qa_set_up_tag_field(&$qa_content, &$field, $fieldname, $tags, $examplet
 
 	$field['label'] = qa_lang_html($separatorcomma ? 'question/q_tags_comma_label' : 'question/q_tags_label');
 	$field['value'] = qa_html(implode($separatorcomma ? ', ' : ' ', $tags));
-	$field['tags'] = 'name="' . $fieldname . '" id="tags" autocomplete="off" onkeyup="qa_tag_hints();" onmouseup="qa_tag_hints();"';
+	$field['tags'] = 'name="' . $fieldname . '" id="tags" autocomplete="off" onkeyup="qa_tag_hints();" onmouseup="qa_tag_hints();" style="display:none"';
 
 	$sdn = ' style="display:none;"';
 
 	$field['note'] =
-		'<span id="tag_examples_title"' . (count($exampletags) ? '' : $sdn) . '>' . qa_lang_html('question/example_tags') . '</span>' .
+		'<span id="tag_examples_title"</span>' .
 		'<span id="tag_complete_title"' . $sdn . '>' . qa_lang_html('question/matching_tags') . '</span><span id="tag_hints">';
 
 	foreach ($exampletags as $tag)
 		$field['note'] .= str_replace('^', qa_html($tag), $template) . ' ';
+
+    $field['note'] .= '<tag-selector/>';
 
 	$field['note'] .= '</span>';
 	$field['note_force'] = true;
@@ -1726,9 +1729,9 @@ function qa_get_tags_field_value($fieldname)
 	$text = qa_remove_utf8mb4(qa_post_text($fieldname));
 
 	if (qa_opt('tag_separator_comma'))
-		return array_unique(preg_split('/\s*,\s*/', trim(qa_strtolower(strtr($text, '/', ' '))), -1, PREG_SPLIT_NO_EMPTY));
+		return array_unique(preg_split('/\s*,\s*/', trim(strtr($text, '/', ' ')), -1, PREG_SPLIT_NO_EMPTY));
 	else
-		return array_unique(qa_string_to_words($text, true, false, false, false));
+		return array_unique(qa_string_to_words($text, false, false, false, false));
 }
 
 
