@@ -800,6 +800,10 @@ function qa_content_prepare($voting = false, $categoryids = array())
 
 	$qa_content['script_rel'] = array('qa-content/jquery-3.3.1.min.js');
 	$qa_content['script_rel'][] = 'qa-content/qa-global.js?' . QA_VERSION;
+    $qa_content['script_rel'][] = 'qa-content/qa-vue.js';
+    $qa_content['script_rel'][] = 'qa-content/util/tagUtil.js';
+    $qa_content['script_src'][] = 'https://unpkg.com/vue';
+    $qa_content['script_src'][] = 'https://unpkg.com/http-vue-loader';
 
 	if ($voting)
 		$qa_content['error'] = @$qa_page_error_html;
