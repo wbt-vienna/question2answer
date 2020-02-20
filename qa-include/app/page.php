@@ -811,6 +811,7 @@ function qa_content_prepare($voting = false, $categoryids = array())
 	$qa_content['script_var'] = array(
 		'qa_root' => qa_path_to_root(),
 		'qa_request' => $request,
+        'qa_all_tags' => file_get_contents("https://tags.asterics-foundation.org:4000/tags")
 	);
 
 	return $qa_content;
