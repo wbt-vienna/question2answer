@@ -25,5 +25,6 @@ window.addEventListener('load', function () {
             let id = text.substring(17, text.lastIndexOf('"'));
             elem.text(searchString + tagUtil.getLabel(id, tags) + '"');
         }
+        elem.show();
     });
 });

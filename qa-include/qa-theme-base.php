@@ -745,7 +745,7 @@ class qa_html_theme_base
 
 			$this->output('<div class="qa-main-heading">');
 			$this->favorite();
-			$this->output('<h1>');
+			$this->output('<h1 style="display: none">');
 			$this->title();
 			$this->output('</h1>');
 			$this->output('</div>');
