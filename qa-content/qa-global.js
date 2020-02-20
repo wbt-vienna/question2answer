@@ -508,8 +508,7 @@ function qa_tag_click(link)
 
 function qa_tag_hints(skipcomplete)
 {
-	return;
-	var elem = document.getElementById('tags');
+	/*var elem = document.getElementById('tags');
 	var html = '';
 	var completed = false;
 
@@ -530,7 +529,7 @@ function qa_tag_hints(skipcomplete)
 	// set title visiblity and hint list
 	document.getElementById('tag_examples_title').style.display = (html && !completed) ? '' : 'none';
 	document.getElementById('tag_complete_title').style.display = (html && completed) ? '' : 'none';
-	document.getElementById('tag_hints').innerHTML = html;
+	document.getElementById('tag_hints').innerHTML = html;*/
 }
 
 function qa_tags_to_html(tags, matchlc)
