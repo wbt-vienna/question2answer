@@ -142,7 +142,7 @@
 		'page_not_found' => 'Seite nicht gefunden',
 		'page_prev' => 'vorherige',
 		'popular_tags' => 'Beliebteste Tags',
-		'questions_tagged_x' => 'Fragen mit ^-Tag',
+		'questions_tagged_x' => 'Fragen mit Tag "^"',
 		'recategorized' => 'Kategorie geändert',
 		'recent_activity_in_x' => 'Letzte Aktivität in ^',
 		'recent_activity_title' => 'Letzte Aktivitäten',
