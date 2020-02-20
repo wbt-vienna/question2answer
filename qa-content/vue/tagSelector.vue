@@ -82,16 +82,15 @@
         },
         mounted() {
             let thiz = this;
-            $.get('https://tags.asterics-foundation.org:4000/tags', null, function(tags) {
-                let tagInput = document.getElementById('tags');
-                let value = tagInput.value ? tagInput.value.toUpperCase() : tagInput.value;
-                thiz.elementTags = value ? value.split(' ') : [];
-                thiz.tags = tags;
-                thiz.startTagIds = ['ACCESSIBILITY', 'META'];
-                thiz.startTags = thiz.selectTags = tagUtil.getAllChildren(thiz.startTagIds, thiz.tags, 1);
-                thiz.allChildren = tagUtil.getAllChildIds(thiz.startTagIds, thiz.tags);
-                thiz.elementTags.sort();
-            });
+            let tags = JSON.parse(qa_all_tags);
+            let tagInput = document.getElementById('tags');
+            let value = tagInput.value ? tagInput.value.toUpperCase() : tagInput.value;
+            thiz.elementTags = value ? value.split(' ') : [];
+            thiz.tags = tags;
+            thiz.startTagIds = ['ACCESSIBILITY', 'META'];
+            thiz.startTags = thiz.selectTags = tagUtil.getAllChildren(thiz.startTagIds, thiz.tags, 1);
+            thiz.allChildren = tagUtil.getAllChildIds(thiz.startTagIds, thiz.tags);
+            thiz.elementTags.sort();
         }
     }
 </script>
