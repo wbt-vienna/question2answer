@@ -220,7 +220,7 @@
             $extratags = isset($this->content['wrapper_tags']) ? $this->content['wrapper_tags'] : '';
             $this->output( '<div class="qa-body-wrapper"' . $extratags . '>', '' );
 
-            $this->output( '<main class="donut-masthead">' );
+            $this->output( '<div class="donut-masthead">' );
 
             $this->output( '<div class="container">' );
             $this->notices();
@@ -237,7 +237,7 @@
             $this->donut_breadcrumb();
             $this->output( '</div>' );
 
-            $this->output( '</main>' );
+            $this->output( '</div>' );
 
             $this->output( '<div class="container">', '' );
 
@@ -362,7 +362,7 @@
             $width_class = ( $this->donut_do_hide_sidebar() && $this->template != 'admin' ) ? 'col-xs-12' : 'qa-main col-md-9 col-xs-12 pull-left';
 
             $extratags = isset($this->content['main_tags']) ? $this->content['main_tags'] : '';
-            $this->output( '<div class="' . $width_class . ( @$this->content['hidden'] ? ' qa-main-hidden' : '' ) . '"'.$extratags.'>' );
+            $this->output( '<main class="' . $width_class . ( @$this->content['hidden'] ? ' qa-main-hidden' : '' ) . '"'.$extratags.'>' );
 
             if ( !empty( $this->content['navigation']['sub'] ) || $this->template == 'admin' ) {
                 $this->donut_sidebar_toggle_nav_btn();
@@ -389,7 +389,7 @@
 
             $this->widgets( 'main', 'bottom' );
 
-            $this->output( '</div> <!-- END qa-main -->', '' );
+            $this->output( '</main> <!-- END qa-main -->', '' );
         }
 
         /**
@@ -410,7 +410,7 @@
 
         function sidepanel()
         {
-            $this->output( '<div class="qa-sidepanel col-md-3 col-xs-12 pull-right">' );
+            $this->output( '<aside class="qa-sidepanel col-md-3 col-xs-12 pull-right">' );
             $this->output( '<div class="side-search-bar hidden-xs">' );
             $this->search();
             $this->output( '</div>' );
@@ -422,7 +422,7 @@
             $this->output_raw( @$this->content['sidepanel'] );
             $this->feed();
             $this->widgets( 'side', 'bottom' );
-            $this->output( '</div>', '' );
+            $this->output( '</aside>', '' );
         }
 
         /**
