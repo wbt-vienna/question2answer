@@ -566,12 +566,12 @@ class qa_html_theme_base
 		$this->output('<input type="submit" value="' . $search['button_label'] . '" class="qa-search-button"/>');
 	}
 
-	public function nav($navtype, $level = null)
+	public function nav($navtype, $level = null, $ariaLabel = "")
 	{
 		$navigation = @$this->content['navigation'][$navtype];
 
 		if ($navtype == 'user' || isset($navigation)) {
-			$this->output('<div class="qa-nav-' . $navtype . '">');
+			$this->output('<nav class="qa-nav-' . $navtype . '" aria-label="' . $ariaLabel . '">');
 
 			if ($navtype == 'user')
 				$this->logged_in();
@@ -589,7 +589,7 @@ class qa_html_theme_base
 			$this->nav_clear($navtype);
 			$this->clear_context('nav_type');
 
-			$this->output('</div>');
+			$this->output('</nav>');
 		}
 	}
 
@@ -715,7 +715,7 @@ class qa_html_theme_base
 		$content = $this->content;
 		$hidden = !empty($content['hidden']) ? ' qa-main-hidden' : '';
 
-		$this->output('<div class="qa-main' . $hidden . '">');
+		$this->output('<main class="qa-main' . $hidden . '">');
 
 		$this->widgets('main', 'top');
 
@@ -732,7 +732,7 @@ class qa_html_theme_base
 
 		$this->widgets('main', 'bottom');
 
-		$this->output('</div> <!-- END qa-main -->', '');
+		$this->output('</main> <!-- END qa-main -->', '');
 	}
 
 	public function page_title_error()
@@ -897,13 +897,13 @@ class qa_html_theme_base
 
 	public function footer()
 	{
-		$this->output('<div class="qa-footer">');
+		$this->output('<footer class="qa-footer">');
 
 		$this->nav('footer');
 		$this->attribution();
 		$this->footer_clear();
 
-		$this->output('</div> <!-- END qa-footer -->', '');
+		$this->output('</footer> <!-- END qa-footer -->', '');
 	}
 
 	public function attribution()

@@ -218,9 +218,9 @@ class qa_html_theme extends qa_html_theme_base
 		$this->output('<div class="sb-toggle-left qam-menu-toggle"><i class="icon-th-list"></i></div>');
 		$this->nav_user_search();
 		$this->logo();
-		$this->nav('main');
+		$this->nav('main', null, "Hauptnavigation");
 		$this->output('</div> <!-- END qam-main-nav-wrapper -->');
-		$this->nav('sub');
+		$this->nav('sub', null, "Subnavigation");
 	}
 
 	/**
@@ -320,7 +320,7 @@ class qa_html_theme extends qa_html_theme_base
 			return;
 
 		$this->output('<div id="qam-sidepanel-toggle"><i class="icon-left-open-big"></i></div>');
-		$this->output('<div class="qa-sidepanel" id="qam-sidepanel-mobile">');
+		$this->output('<aside class="qa-sidepanel" id="qam-sidepanel-mobile">');
 		$this->qam_search();
 		$this->widgets('side', 'top');
 		$this->sidebar();
@@ -330,7 +330,7 @@ class qa_html_theme extends qa_html_theme_base
 			$this->output_raw($this->content['sidepanel']);
 		$this->feed();
 		$this->widgets('side', 'bottom');
-		$this->output('</div> <!-- qa-sidepanel -->', '');
+		$this->output('</aside> <!-- qa-sidepanel -->', '');
 	}
 
 	/**
@@ -383,7 +383,7 @@ class qa_html_theme extends qa_html_theme_base
 		if (isset($this->content['feed']['url'])) {
 			$feed = $this->content['feed'];
 			$label = isset($feed['label']) ? $feed['label'] : '';
-			$this->output('<a href="' . $feed['url'] . '" title="' . $label . '"><i class="icon-rss qam-title-rss"></i></a>');
+			$this->output('<a href="' . $feed['url'] . '" title="' . $label . '" aria-hidden="true"><i class="icon-rss qam-title-rss"></i></a>');
 		}
 	}
 
@@ -638,11 +638,12 @@ class qa_html_theme extends qa_html_theme_base
 	 */
 	private function qam_user_account()
 	{
-		if (qa_is_logged_in()) {
+		$loginLinkLabel = 'Anmelden';
+	    if (qa_is_logged_in()) {
 			// get logged-in user avatar
 			$handle = qa_get_logged_in_user_field('handle');
 			$toggleClass = 'qam-logged-in';
-
+            $loginLinkLabel = "Dropdown für eingeloggten User {$handle} öffnen.";
 			if (QA_FINAL_EXTERNAL_USERS)
 				$tobar_avatar = qa_get_external_avatar_html(qa_get_logged_in_user_field('userid'), $this->nav_bar_avatar_size, true);
 			else {
@@ -672,10 +673,10 @@ class qa_html_theme extends qa_html_theme_base
 		// finally output avatar with div tag
 		$handleBlock = empty($handle) ? '' : '<div class="qam-account-handle">' . qa_html($handle) . '</div>';
 		$this->output(
-			'<div id="qam-account-toggle" class="' . $toggleClass . '">',
+			'<a href="javascript:;" id="qam-account-toggle" class="' . $toggleClass . '" aria-label="' . $loginLinkLabel . '">',
 			$avatar,
 			$handleBlock,
-			'</div>'
+			'</a>'
 		);
 	}
 
