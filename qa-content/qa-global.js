@@ -95,14 +95,16 @@ function qa_vote_click(elem)
 					mess = document.createElement('div');
 					mess.id = 'errorbox';
 					mess.className = 'qa-error';
-					mess.innerHTML = lines[1];
 					mess.style.display = 'none';
 				}
+				mess.setAttribute('aria-live', 'assertive');
 
 				var postelem = document.getElementById(anchor);
 				var e = postelem.parentNode.insertBefore(mess, postelem);
 				qa_reveal(e);
-
+				setTimeout(function () {
+					mess.innerHTML = lines[1]; //in order to be read by screenreader
+				}, 100);
 			} else
 				qa_ajax_error();
 		}
