@@ -96,6 +96,7 @@ function qa_vote_click(elem)
 					mess.id = 'errorbox';
 					mess.className = 'qa-error';
 					mess.style.display = 'none';
+					mess.role = 'alert';
 				}
 				mess.setAttribute('aria-live', 'assertive');
 
