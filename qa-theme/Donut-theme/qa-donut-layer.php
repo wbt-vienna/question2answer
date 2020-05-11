@@ -173,7 +173,7 @@
             parent::head_script();
 
             $js_paths = array(
-                    'bootstrap' => 'js/bootstrap.min.js?3.3.5',
+                    'bootstrap' => 'js/bootstrap.js?3.3.5',
                     'donut'     => 'js/donut.js?' . DONUT_THEME_VERSION,
             );
 
@@ -276,9 +276,9 @@
             $this->feed_link();
 
             $this->output( '<h1>' );
-            $this->favorite();
             $this->title();
             $this->output( '</h1>' );
+            $this->favorite();
 
             if ( $this->template == 'not-found' && qa_opt( 'donut_show_custom_404_page' ) ) {
                 $this->output( donut_include_template( 'page-not-found.php', false ) );
