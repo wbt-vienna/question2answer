@@ -660,7 +660,7 @@
         function search_button( $search )
         {
             $this->output( '<span class="input-group-btn">' );
-            $this->output( '<button type="submit" value="" class="btn qa-search-button" ><span class="fa fa-search"></span></button>' );
+            $this->output( '<button type="submit" value="" class="btn qa-search-button" title="' . qa_lang_html('main/search_button') . '"><span class="fa fa-search"></span></button>' );
             $this->output( '</span>' );
         }
 
