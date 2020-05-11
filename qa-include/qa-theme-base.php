@@ -595,7 +595,7 @@ class qa_html_theme_base
 
 	public function nav_list($navigation, $class, $level = null)
 	{
-		$this->output('<ul class="qa-' . $class . '-list' . (isset($level) ? (' qa-' . $class . '-list-' . $level) : '') . '">');
+		$this->output('<ul role="tablist" class="qa-' . $class . '-list' . (isset($level) ? (' qa-' . $class . '-list-' . $level) : '') . '">');
 
 		$index = 0;
 
@@ -642,11 +642,11 @@ class qa_html_theme_base
 	{
 		if (isset($navlink['url'])) {
 			$this->output(
-				'<a href="' . $navlink['url'] . '" class="qa-' . $class . '-link' .
+				'<a role="tab" href="' . $navlink['url'] . '" class="qa-' . $class . '-link' .
 				(@$navlink['selected'] ? (' qa-' . $class . '-selected') : '') .
 				(@$navlink['favorited'] ? (' qa-' . $class . '-favorited') : '') .
 				'"' . (strlen(@$navlink['popup']) ? (' title="' . $navlink['popup'] . '"') : '') .
-				(isset($navlink['target']) ? (' target="' . $navlink['target'] . '"') : '') . '>' . $navlink['label'] .
+				(isset($navlink['target']) ? (' target="' . $navlink['target'] . '"') : '') . (@$navlink['selected'] ? (' aria-selected="true"') : '') . '>' . $navlink['label'] .
 				'</a>'
 			);
 		} else {
@@ -1653,9 +1653,9 @@ class qa_html_theme_base
 	public function q_list($q_list)
 	{
 		if (isset($q_list['qs'])) {
-			$this->output('<div class="qa-q-list' . ($this->list_vote_disabled($q_list['qs']) ? ' qa-q-list-vote-disabled' : '') . '">', '');
+			$this->output('<ul class="qa-q-list' . ($this->list_vote_disabled($q_list['qs']) ? ' qa-q-list-vote-disabled' : '') . '" aria-label="' . qa_lang_html('main/x_questions') . '" style="list-style-type:none;">', '');
 			$this->q_list_items($q_list['qs']);
-			$this->output('</div> <!-- END qa-q-list -->', '');
+			$this->output('</ul> <!-- END qa-q-list -->', '');
 		}
 	}
 
