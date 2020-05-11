@@ -1443,10 +1443,10 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   }
 
   Tooltip.prototype.fixTitle = function () {
-    var $e = this.$element
+    /*var $e = this.$element
     if ($e.attr('title') || typeof ($e.attr('data-original-title')) != 'string') {
       $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
-    }
+    }*/
   }
 
   Tooltip.prototype.hasContent = function () {
