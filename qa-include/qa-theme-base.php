@@ -156,7 +156,7 @@ class qa_html_theme_base
 			return;
 
 		$this->output(
-			'<' . $outertag . ' class="' . $class . (isset($extraclass) ? (' ' . $extraclass) : '') . '">',
+			'<' . $outertag . ' class="' . $class . (isset($extraclass) ? (' ' . $extraclass) : '') . '"' . (isset($parts['aria-hidden']) ? 'aria-hidden="true"' : '') . '>',
 			(strlen(@$parts['prefix']) ? ('<' . $innertag . ' class="' . $class . '-pad">' . $parts['prefix'] . '</' . $innertag . '>') : '') .
 			(strlen(@$parts['data']) ? ('<' . $innertag . ' class="' . $class . '-data">' . $parts['data'] . '</' . $innertag . '>') : '') .
 			(strlen(@$parts['suffix']) ? ('<' . $innertag . ' class="' . $class . '-pad">' . $parts['suffix'] . '</' . $innertag . '>') : ''),
@@ -1995,7 +1995,8 @@ class qa_html_theme_base
 			// You can also use $post['level'] to get the author's privilege level (as a string)
 
 			if (isset($post['who']['points'])) {
-				$post['who']['points']['prefix'] = '(' . $post['who']['points']['prefix'];
+                $post['who']['points']['aria-hidden'] = true;
+			    $post['who']['points']['prefix'] = '(' . $post['who']['points']['prefix'];
 				$post['who']['points']['suffix'] .= ')';
 				$this->output_split($post['who']['points'], $class . '-who-points');
 			}
@@ -2023,9 +2024,9 @@ class qa_html_theme_base
 
 	public function post_tag_list($post, $class)
 	{
-		$this->output('<ul class="' . $class . '-tag-list">');
-
-		foreach ($post['q_tags'] as $taghtml) {
+        $this->output('<label for="taglist" id="taglistLabel" class="sr-only">' . qa_lang_html('main/list_of') . ' <span lang="en">' . qa_lang_html('main/nav_tags') . '</span></label>');
+        $this->output('<ul id="taglist" aria-labelledby="taglistLabel" class="' . $class . '-tag-list">');
+        foreach ($post['q_tags'] as $taghtml) {
 			$this->post_tag_item($taghtml, $class);
 		}
 
@@ -2138,6 +2139,7 @@ class qa_html_theme_base
 		if (!empty($q_view)) {
 			$this->output('<div class="qa-q-view' . (@$q_view['hidden'] ? ' qa-q-view-hidden' : '') . rtrim(' ' . @$q_view['classes']) . '"' . rtrim(' ' . @$q_view['tags']) . '>');
 
+            $this->q_view_main($q_view);
 			if (isset($q_view['main_form_tags'])) {
 				$this->output('<form ' . $q_view['main_form_tags'] . '>'); // form for question voting buttons
 			}
@@ -2149,7 +2151,6 @@ class qa_html_theme_base
 				$this->output('</form>');
 			}
 
-			$this->q_view_main($q_view);
 			$this->q_view_clear();
 
 			$this->output('</div> <!-- END qa-q-view -->', '');
@@ -2296,6 +2297,7 @@ class qa_html_theme_base
 
 		$this->output('<div class="qa-a-list-item ' . $extraclass . '" ' . @$a_item['tags'] . '>');
 
+        $this->a_item_main($a_item);
 		if (isset($a_item['main_form_tags'])) {
 			$this->output('<form ' . $a_item['main_form_tags'] . '>'); // form for answer voting buttons
 		}
@@ -2307,7 +2309,6 @@ class qa_html_theme_base
 			$this->output('</form>');
 		}
 
-		$this->a_item_main($a_item);
 		$this->a_item_clear();
 
 		$this->output('</div> <!-- END qa-a-list-item -->', '');
