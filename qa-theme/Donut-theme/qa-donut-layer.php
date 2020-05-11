@@ -778,14 +778,14 @@
 
         public function q_list_item( $q_item )
         {
-            $this->output( '<div class="qa-q-list-item row' . rtrim( ' ' . @$q_item['classes'] ) . '" ' . @$q_item['tags'] . '>' );
+            $this->output( '<li class="qa-q-list-item row' . rtrim( ' ' . @$q_item['classes'] ) . '" ' . @$q_item['tags'] . '>' );
 
+            $this->q_item_main( $q_item );
             $this->q_item_stats( $q_item );
             //$this->q_item_avatar( $q_item );
-            $this->q_item_main( $q_item );
             $this->q_item_clear();
 
-            $this->output( '</div> <!-- END qa-q-list-item -->', '' );
+            $this->output( '</li> <!-- END qa-q-list-item -->', '' );
         }
 
         function q_item_avatar( $q_item )
