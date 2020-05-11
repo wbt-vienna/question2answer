@@ -426,7 +426,7 @@ function qa_post_html_fields($post, $userid, $cookieid, $usershtml, $dummy, $opt
 
 		// this is for backwards compatibility with any existing links using the old style of anchor
 		// that contained the post id only (changed to be valid under W3C specifications)
-		$fields['content'] = '<a name="' . qa_html($postid) . '"></a>' . $fields['content'];
+		$fields['content'] = '<a aria-hidden="true" name="' . qa_html($postid) . '"></a>' . $fields['content'];
 	}
 
 	// Voting stuff
@@ -542,7 +542,8 @@ function qa_post_html_fields($post, $userid, $cookieid, $usershtml, $dummy, $opt
 			$fields['vote_down_tags'] = 'title="' . qa_lang_html('main/voted_down_popup') . '" name="' . qa_html('vote_' . $postid . '_0_' . $elementid) . '" ' . $onclick;
 
 		} else {
-			$fields['vote_up_tags'] = 'title="' . qa_lang_html('main/vote_up_popup') . '" name="' . qa_html('vote_' . $postid . '_1_' . $elementid) . '" ' . $onclick;
+            $title = $fields['raw']['type'] == "Q" ? qa_lang_html('main/vote_up_popup_question') : qa_lang_html('main/vote_up_popup_answer');
+		    $fields['vote_up_tags'] = 'title="' . $title . '" name="' . qa_html('vote_' . $postid . '_1_' . $elementid) . '" ' . $onclick;
 
 			if (strpos($voteview, '-uponly-level')) {
 				$fields['vote_state'] = 'up_only';
@@ -553,8 +554,9 @@ function qa_post_html_fields($post, $userid, $cookieid, $usershtml, $dummy, $opt
 				$fields['vote_down_tags'] = 'title="' . qa_lang_html('main/vote_disabled_down_approve') . '"';
 
 			} else {
-				$fields['vote_state'] = 'enabled';
-				$fields['vote_down_tags'] = 'title="' . qa_lang_html('main/vote_down_popup') . '" name="' . qa_html('vote_' . $postid . '_-1_' . $elementid) . '" ' . $onclick;
+				$title = $fields['raw']['type'] == "Q" ? qa_lang_html('main/vote_down_popup_question') : qa_lang_html('main/vote_down_popup_answer');
+			    $fields['vote_state'] = 'enabled';
+				$fields['vote_down_tags'] = 'title="' . $title . '" name="' . qa_html('vote_' . $postid . '_-1_' . $elementid) . '" ' . $onclick;
 			}
 		}
 	}
