@@ -228,6 +228,8 @@
 		'x_votes' => '^ Punkte',
 		'x_weeks' => '^ Wochen',
 		'x_years' => '^ Jahren',
+	  	'stats_label' => 'Statistiken über diese Seite',
+	  	'label_sidebar' => 'Sidebar mit Suchleiste',
 	  	'_decimal_point' => ".",
     		'_millions_suffix' => "m",
     		'_thousands_separator' => ",",
