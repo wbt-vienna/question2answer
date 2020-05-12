@@ -1,6 +1,7 @@
 <div class="donut-site-stats-bottom">
     <div class="container">
         <div class="row">
+            <h1 class="sr-only"><?php echo qa_lang_html('main/stats_label');?></h1>
             <div class="stats-wrap">
                 <?php
                     donut_stats_output( qa_opt( 'cache_qcount' ), 'main/1_question', 'main/x_questions' );
