@@ -1895,9 +1895,10 @@ function qa_set_up_name_field(&$qa_content, &$fields, $inname, $fieldprefix = ''
 function qa_set_up_notify_fields(&$qa_content, &$fields, $basetype, $login_email, $innotify, $inemail, $errors_email, $fieldprefix = '')
 {
 	$fields['notify'] = array(
-		'tags' => 'name="' . $fieldprefix . 'notify"',
+		'tags' => 'name="' . $fieldprefix . 'notify" id="notify"',
 		'type' => 'checkbox',
 		'value' => qa_html($innotify),
+        'id' => 'notify'
 	);
 
 	switch ($basetype) {
