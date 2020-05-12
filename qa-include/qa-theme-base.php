@@ -640,9 +640,10 @@ class qa_html_theme_base
 
 	public function nav_link($navlink, $class)
 	{
-		if (isset($navlink['url'])) {
+		$role = isset($navlink['role']) ? $navlink['role'] : 'tab';
+	    if (isset($navlink['url'])) {
 			$this->output(
-				'<a role="tab" href="' . $navlink['url'] . '" class="qa-' . $class . '-link' .
+				'<a role="' . $role . '" href="' . $navlink['url'] . '" class="qa-' . $class . '-link' .
 				(@$navlink['selected'] ? (' qa-' . $class . '-selected') : '') .
 				(@$navlink['favorited'] ? (' qa-' . $class . '-favorited') : '') .
 				'"' . (strlen(@$navlink['popup']) ? (' title="' . $navlink['popup'] . '"') : '') .
@@ -897,13 +898,13 @@ class qa_html_theme_base
 
 	public function footer()
 	{
-		$this->output('<footer class="qa-footer">');
+		$this->output('<div class="qa-footer">');
 
 		$this->nav('footer');
 		$this->attribution();
 		$this->footer_clear();
 
-		$this->output('</footer> <!-- END qa-footer -->', '');
+		$this->output('</div> <!-- END qa-footer -->', '');
 	}
 
 	public function attribution()
@@ -911,7 +912,7 @@ class qa_html_theme_base
 		// Hi there. I'd really appreciate you displaying this link on your Q2A site. Thank you - Gideon
 
 		$this->output(
-			'<div class="qa-attribution">',
+			'<div class="qa-attribution" lang="en">',
 			'Powered by <a href="http://www.question2answer.org/">Question2Answer</a>',
 			'</div>'
 		);
@@ -1311,22 +1312,22 @@ class qa_html_theme_base
 
 	public function form_static($field, $style)
 	{
-		$this->output('<span id="' . $field['id'] .'" class="qa-form-' . $style . '-static">' . @$field['value'] . '</span>');
+		$this->output('<span id="' . @$field['id'] .'" class="qa-form-' . $style . '-static">' . @$field['value'] . '</span>');
 	}
 
 	public function form_password($field, $style)
 	{
-		$this->output('<input id="' . $field['id'] .'" ' . @$field['tags'] . ' type="password" value="' . @$field['value'] . '" class="qa-form-' . $style . '-text"/>');
+		$this->output('<input id="' . @$field['id'] .'" ' . @$field['tags'] . ' type="password" value="' . @$field['value'] . '" class="qa-form-' . $style . '-text"/>');
 	}
 
 	public function form_number($field, $style)
 	{
-		$this->output('<input id="' . $field['id'] .'" ' . @$field['tags'] . ' type="text" value="' . @$field['value'] . '" class="qa-form-' . $style . '-number"/>');
+		$this->output('<input id="' . @$field['id'] .'" ' . @$field['tags'] . ' type="text" value="' . @$field['value'] . '" class="qa-form-' . $style . '-number"/>');
 	}
 
 	public function form_file($field, $style)
 	{
-		$this->output('<input id="' . $field['id'] .'" ' . @$field['tags'] . ' type="file" class="qa-form-' . $style . '-file"/>');
+		$this->output('<input id="' . @$field['id'] .'" ' . @$field['tags'] . ' type="file" class="qa-form-' . $style . '-file"/>');
 	}
 
 	/**
@@ -1375,12 +1376,12 @@ class qa_html_theme_base
 
 	public function form_text_single_row($field, $style)
 	{
-		$this->output('<input id="' . $field['id'] .'" ' . @$field['tags'] . ' type="text" value="' . @$field['value'] . '" class="qa-form-' . $style . '-text"/>');
+		$this->output('<input id="' . @$field['id'] .'" ' . @$field['tags'] . ' type="text" value="' . @$field['value'] . '" class="qa-form-' . $style . '-text"/>');
 	}
 
 	public function form_text_multi_row($field, $style)
 	{
-		$this->output('<textarea id="' . $field['id'] .'" ' . @$field['tags'] . ' rows="' . (int)$field['rows'] . '" cols="40" class="qa-form-' . $style . '-text">' . @$field['value'] . '</textarea>');
+		$this->output('<textarea id="' . @$field['id'] .'" ' . @$field['tags'] . ' rows="' . (int)$field['rows'] . '" cols="40" class="qa-form-' . $style . '-text">' . @$field['value'] . '</textarea>');
 	}
 
 	public function form_error($field, $style, $columns)
@@ -1737,19 +1738,22 @@ class qa_html_theme_base
 		}
 	}
 
-	public function voting($post)
+	public function voting($post, $showAnswerSelection = false)
 	{
 		if (isset($post['vote_view'])) {
 			$this->output('<div class="qa-voting ' . (($post['vote_view'] == 'updown') ? 'qa-voting-updown' : 'qa-voting-net') . '" ' . @$post['vote_tags'] . '>');
-			$this->voting_inner_html($post);
+			$this->voting_inner_html($post, $showAnswerSelection);
 			$this->output('</div>');
 		}
 	}
 
-	public function voting_inner_html($post)
+	public function voting_inner_html($post, $showAnswerSelection = false)
 	{
 		$this->vote_buttons($post);
 		$this->vote_count($post);
+        if ($showAnswerSelection) {
+            $this->a_selection($post);
+        }
 		$this->vote_clear();
 	}
 
@@ -2300,7 +2304,7 @@ class qa_html_theme_base
 			$this->output('<form ' . $a_item['main_form_tags'] . '>'); // form for answer voting buttons
 		}
 
-		$this->voting($a_item);
+		$this->voting($a_item, true);
 
 		if (isset($a_item['main_form_tags'])) {
 			$this->form_hidden_elements(@$a_item['voting_form_hidden']);
@@ -2325,7 +2329,6 @@ class qa_html_theme_base
 		elseif ($a_item['selected'])
 			$this->output('<div class="qa-a-item-selected">');
 
-		$this->a_selection($a_item);
 		$this->error(@$a_item['error']);
 		$this->a_item_content($a_item);
 		$this->post_avatar_meta($a_item, 'qa-a-item');

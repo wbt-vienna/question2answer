@@ -3566,12 +3566,9 @@ a.qa-browse-cat-link:visited {
 }
 /* Answer selection */
 .qa-a-selection {
-  position: absolute;
-  left: 12px;
-  top: 85px;
+  margin-top: 1.5em;
   width: 60px;
   text-align: center;
-  float: left;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
