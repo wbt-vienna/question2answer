@@ -18,6 +18,7 @@
 
 	More about this license: http://www.question2answer.org/license.php
 */
+require_once QA_BASE_DIR . 'qa-config-constants.php';
 
 if (!defined('QA_VERSION')) { // don't allow this page to be requested directly from browser
 	header('Location: ../../');
@@ -808,10 +809,14 @@ function qa_content_prepare($voting = false, $categoryids = array())
 	if ($voting)
 		$qa_content['error'] = @$qa_page_error_html;
 
+	$allTagsString = file_get_contents("https://tags.asterics-foundation.org:4000/tags", 0, stream_context_create(["http" => ["timeout" => 1]]));
+	$allTagsString = $allTagsString ? $allTagsString : QA_ALL_TAGS_STRING_FALLBACK;
+    $GLOBALS['qa_all_tags'] = array_column(json_decode($allTagsString), NULL, 'id');
+
 	$qa_content['script_var'] = array(
 		'qa_root' => qa_path_to_root(),
 		'qa_request' => $request,
-        'qa_all_tags' => file_get_contents("https://tags.asterics-foundation.org:4000/tags")
+        'qa_all_tags' => $allTagsString
 	);
 
 	return $qa_content;
