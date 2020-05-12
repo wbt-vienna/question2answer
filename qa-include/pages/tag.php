@@ -60,7 +60,7 @@ if (isset($userid) && isset($tagword)) {
 	$favorite = @$favoritemap['tag'][qa_strtolower($tagword['word'])];
 
 	$qa_content['favorite'] = qa_favorite_form(QA_ENTITY_TAG, $tagword['wordid'], $favorite,
-		qa_lang_sub($favorite ? 'main/remove_x_favorites' : 'main/add_tag_x_favorites', $tagword['word']));
+		qa_lang_sub($favorite ? 'main/remove_x_favorites' : 'main/add_tag_x_favorites', '"' . $GLOBALS['qa_all_tags'][strtoupper($tagword['word'])]->labelDE . '"'));
 }
 
 if (!count($questions))
