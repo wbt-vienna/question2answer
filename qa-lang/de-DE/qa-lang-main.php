@@ -80,6 +80,7 @@
 		'date_year_digits' => 4, // 2 or 4
 		'edited' => 'Bearbeitet',
 		'email_error' => 'Fehler beim Versuch eine E-Mail zu senden.',
+		'email_optional' => 'E-Mail Adresse (optional)',
 		'field_required' => 'Bitte geben Sie etwas in das Feld ein',
 		'file_upload_limit_exceeded' => 'Die Größe der Datei überschreitet den erlaubten Wert',
 		'general_error' => 'Server-seitiger Fehler - Bitte versuchen Sie es noch einmal',
