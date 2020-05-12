@@ -52,7 +52,7 @@
         'approve_button' => 'freigeben',
         'approve_c_popup' => 'Diesen Kommentar freigeben',
         'approve_q_popup' => 'Diese Frage freigeben',
-        'ask_button' => 'Eine Frage stellen',
+        'ask_button' => 'Frage stellen',
         'ask_follow_from_a' => 'Ihre Frage hat Ähnlichkeit mit folgender Antwort:',
         'ask_follow_title' => 'Eine ähnliche Frage stellen',
         'ask_limit' => 'Zu viele Fragen erhalten - Bitte versuchen Sie es in einer Stunde wieder',
