@@ -411,6 +411,7 @@
         function sidepanel()
         {
             $this->output( '<aside class="qa-sidepanel col-md-3 col-xs-12 pull-right">' );
+            $this->output('<h1 class="sr-only">' . qa_lang_html("main/label_sidebar") . '</h1>');
             $this->output( '<div class="side-search-bar hidden-xs">' );
             $this->search();
             $this->output( '</div>' );
@@ -1339,8 +1340,8 @@
         private function donut_attribution()
         {
             $this->output(
-                    '<div class="qa-attribution">',
-                    '<a href="https://github.com/amiyasahu/Donut">Donut Theme</a> <span class="fa fa-code"></span> with <span class="fa fa-heart"></span> by <a href="http://amiyasahu.github.io">Amiya Sahu</a>',
+                    '<div class="qa-attribution" lang="en">',
+                    '<a href="https://github.com/amiyasahu/Donut">Donut Theme</a> <span aria-hidden="true" class="fa fa-code"></span><span class="sr-only">code</span> with <span aria-hidden="true" class="fa fa-heart"></span><span class="sr-only">heart</span> by <a href="http://amiyasahu.github.io">Amiya Sahu</a>',
                     '</div>'
             );
         }
@@ -1348,8 +1349,8 @@
         private function donut_copyright()
         {
             $this->output(
-                    '<div class="donut-copyright">',
-                    '<span class="fa fa-copyright"></span>',
+                    '<div class="donut-copyright" lang="en">',
+                    '<span aria-hidden="true" class="fa fa-copyright"></span><span class="sr-only">Copyright by </span>',
                     qa_opt( 'donut_copyright_text' ),
                     '</div>'
             );
