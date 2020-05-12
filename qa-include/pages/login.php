@@ -154,6 +154,7 @@ $qa_content['form'] = array(
 			'tags' => 'name="emailhandle" id="emailhandle" dir="auto"',
 			'value' => qa_html(@$inemailhandle),
 			'error' => qa_html(@$errors['emailhandle']),
+            'id' => 'emailhandle'
 		),
 
 		'password' => array(
@@ -163,13 +164,15 @@ $qa_content['form'] = array(
 			'value' => qa_html(@$inpassword),
 			'error' => empty($errors['password']) ? '' : (qa_html(@$errors['password']) . ' - ' . $forgothtml),
 			'note' => $passwordsent ? qa_lang_html('users/password_sent') : $forgothtml,
+            'id' => 'password'
 		),
 
 		'remember' => array(
 			'type' => 'checkbox',
 			'label' => qa_lang_html('users/remember_label'),
-			'tags' => 'name="remember"',
+			'tags' => 'name="remember" id="rememberInput"',
 			'value' => !empty($inremember),
+            'id' => 'rememberInput'
 		),
 	),
 

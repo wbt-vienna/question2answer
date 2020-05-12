@@ -66,7 +66,7 @@
                 <form role="form" action="<?php echo $this->content['navigation']['user']['login']['url']; ?>"
                       method="post">
                     <li>
-                        <label>
+                        <label for="qa-userid">
                             <?php echo trim( qa_lang_html( 'users/email_handle_label' ), ':' ); ?>
                         </label>
                         <input type="text" class="form-control" id="qa-userid" name="emailhandle"
@@ -74,14 +74,14 @@
                     </li>
 
                     <li>
-                        <label>
+                        <label for="qa-password">
                             <?php echo trim( qa_lang_html( 'users/password_label' ), ':' ); ?>
                         </label>
                         <input type="password" class="form-control" id="qa-password" name="password"
                                placeholder="<?php echo trim( qa_lang_html( 'users/password_label' ), ':' ); ?>"/>
                     </li>
                     <li>
-                        <label class="checkbox inline">
+                        <label for="qa-rememberme" class="checkbox inline">
                             <input type="checkbox" name="remember" id="qa-rememberme"
                                    value="1"> <?php echo qa_lang_html( 'users/remember' ); ?>
                         </label>
