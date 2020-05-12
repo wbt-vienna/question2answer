@@ -1872,8 +1872,9 @@ function qa_set_up_name_field(&$qa_content, &$fields, $inname, $fieldprefix = ''
 {
 	$fields['name'] = array(
 		'label' => qa_lang_html('question/anon_name_label'),
-		'tags' => 'name="' . $fieldprefix . 'name"',
+		'tags' => 'name="' . $fieldprefix . 'name" id="' .$fieldprefix . 'inputNameAnon"',
 		'value' => qa_html($inname),
+        'id' =>  $fieldprefix . 'inputNameAnon'
 	);
 }
 
@@ -1894,11 +1895,12 @@ function qa_set_up_name_field(&$qa_content, &$fields, $inname, $fieldprefix = ''
  */
 function qa_set_up_notify_fields(&$qa_content, &$fields, $basetype, $login_email, $innotify, $inemail, $errors_email, $fieldprefix = '')
 {
-	$fields['notify'] = array(
-		'tags' => 'name="' . $fieldprefix . 'notify" id="notify"',
+
+    $fields['notify'] = array(
+		'tags' => 'name="' . $fieldprefix . 'notify" id="' . $fieldprefix .'notify"',
 		'type' => 'checkbox',
 		'value' => qa_html($innotify),
-        'id' => 'notify'
+        'id' => $fieldprefix.'notify'
 	);
 
 	switch ($basetype) {
@@ -1926,19 +1928,20 @@ function qa_set_up_notify_fields(&$qa_content, &$fields, $basetype, $login_email
 			'<span id="' . $fieldprefix . 'email_shown">' . $labelaskemail . '</span>' .
 			'<span id="' . $fieldprefix . 'email_hidden" style="display:none;">' . $labelonly . '</span>';
 
-		$fields['notify']['tags'] .= ' id="' . $fieldprefix . 'notify" onclick="if (document.getElementById(\'' . $fieldprefix . 'notify\').checked) document.getElementById(\'' . $fieldprefix . 'email\').focus();"';
+		$fields['notify']['tags'] .= ' id="' . $fieldprefix . 'notify" onclick="if (document.getElementById(\'' . $fieldprefix . 'notify\').checked) document.getElementById(\'' . $fieldprefix . 'email_display\').focus();"';
 		$fields['notify']['tight'] = true;
 
 		$fields['email'] = array(
-			'id' => $fieldprefix . 'email_display',
-			'tags' => 'name="' . $fieldprefix . 'email" id="' . $fieldprefix . 'email"',
+			'label' => qa_lang_html('main/email_optional'),
+		    'id' => $fieldprefix . 'email_display',
+			'tags' => 'name="' . $fieldprefix . 'email" id="' . $fieldprefix . 'email_display"',
 			'value' => qa_html($inemail),
 			'note' => qa_lang_html('question/notify_email_note'),
 			'error' => qa_html($errors_email),
 		);
 
 		qa_set_display_rules($qa_content, array(
-			$fieldprefix . 'email_display' => $fieldprefix . 'notify',
+			$fieldprefix . 'email_display-tbody' => $fieldprefix . 'notify',
 			$fieldprefix . 'email_shown' => $fieldprefix . 'notify',
 			$fieldprefix . 'email_hidden' => '!' . $fieldprefix . 'notify',
 		));
