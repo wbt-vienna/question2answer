@@ -1651,9 +1651,9 @@ class qa_html_theme_base
 	public function q_list($q_list)
 	{
 		if (isset($q_list['qs'])) {
-			$this->output('<ul class="qa-q-list' . ($this->list_vote_disabled($q_list['qs']) ? ' qa-q-list-vote-disabled' : '') . '" aria-label="' . qa_lang_html('main/x_questions') . '" style="list-style-type:none;">', '');
+			$this->output('<ol class="qa-q-list' . ($this->list_vote_disabled($q_list['qs']) ? ' qa-q-list-vote-disabled' : '') . '" aria-label="' . qa_lang_html('main/x_questions') . '" style="list-style-type:none;">', '');
 			$this->q_list_items($q_list['qs']);
-			$this->output('</ul> <!-- END qa-q-list -->', '');
+			$this->output('</ol> <!-- END qa-q-list -->', '');
 		}
 	}
 
