@@ -935,8 +935,6 @@ function qa_page_q_add_a_form(&$qa_content, $formid, $captchareason, $question, 
 			$form = array(
 				'tags' => 'method="post" action="' . qa_self_html() . '" name="a_form"',
 
-				'title' => qa_lang_html('question/your_answer_title'),
-
 				'fields' => array(
 					'custom' => array(
 						'type' => 'custom',
@@ -947,7 +945,11 @@ function qa_page_q_add_a_form(&$qa_content, $formid, $captchareason, $question, 
 						qa_editor_load_field($editor, $qa_content, @$in['content'], @$in['format'], 'a_content', 12, $formrequested, $loadnow),
 						array(
 							'error' => qa_html(@$errors['content']),
-						)
+						),
+                        [
+                            'label' => qa_lang_html('question/your_answer_title'),
+                            'id' => 'a_content'
+                        ]
 					),
 				),
 
