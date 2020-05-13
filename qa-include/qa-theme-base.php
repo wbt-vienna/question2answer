@@ -1738,22 +1738,19 @@ class qa_html_theme_base
 		}
 	}
 
-	public function voting($post, $showAnswerSelection = false)
+	public function voting($post)
 	{
 		if (isset($post['vote_view'])) {
 			$this->output('<div class="qa-voting ' . (($post['vote_view'] == 'updown') ? 'qa-voting-updown' : 'qa-voting-net') . '" ' . @$post['vote_tags'] . '>');
-			$this->voting_inner_html($post, $showAnswerSelection);
+			$this->voting_inner_html($post);
 			$this->output('</div>');
 		}
 	}
 
-	public function voting_inner_html($post, $showAnswerSelection = false)
+	public function voting_inner_html($post)
 	{
 		$this->vote_buttons($post);
 		$this->vote_count($post);
-        if ($showAnswerSelection) {
-            $this->a_selection($post);
-        }
 		$this->vote_clear();
 	}
 
@@ -2304,7 +2301,7 @@ class qa_html_theme_base
 			$this->output('<form ' . $a_item['main_form_tags'] . '>'); // form for answer voting buttons
 		}
 
-		$this->voting($a_item, true);
+		$this->voting($a_item);
 
 		if (isset($a_item['main_form_tags'])) {
 			$this->form_hidden_elements(@$a_item['voting_form_hidden']);
@@ -2336,9 +2333,10 @@ class qa_html_theme_base
 		if ($a_item['hidden'] || $a_item['selected'])
 			$this->output('</div>');
 
-		$this->a_item_buttons($a_item);
+        $this->a_item_buttons($a_item);
+        $this->a_selection($a_item);
 
-		if (isset($a_item['main_form_tags'])) {
+        if (isset($a_item['main_form_tags'])) {
 			$this->form_hidden_elements(@$a_item['buttons_form_hidden']);
 			$this->output('</form>');
 		}
