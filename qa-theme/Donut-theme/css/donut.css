@@ -2110,6 +2110,7 @@ header#nav-header {
   width: 65px;
   height: 60px;
   margin-right: 5px;
+  margin-left: 10px;
   padding: 0 0 0 3px;
   border-radius: 5px;
   color: #555555;
@@ -3566,7 +3567,9 @@ a.qa-browse-cat-link:visited {
 }
 /* Answer selection */
 .qa-a-selection {
-  margin-top: 1.5em;
+  position: absolute;
+  right: 30px;
+  top: 85px;
   width: 60px;
   text-align: center;
   -webkit-transition: all 0.5s ease;
@@ -3577,10 +3580,10 @@ a.qa-browse-cat-link:visited {
 }
 @media only screen and (max-width: 991px) {
   .qa-a-selection {
-    left: initial ;
-    right: 5px;
-    top: 10px;
-    float: right ;
+    right: initial;
+    top: initial;
+    left: 90px;
+    bottom: 25px;
   }
 }
 .qa-q-view-c-list,
