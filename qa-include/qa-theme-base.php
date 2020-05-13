@@ -344,6 +344,7 @@ class qa_html_theme_base
 	public function head_css()
 	{
 		$this->output('<link rel="stylesheet" href="' . $this->rooturl . $this->css_name() . '"/>');
+		$this->output('<link rel="stylesheet" href="' . $this->rooturl . 'qa-styles.css' . '"/>');
 
 		if (isset($this->content['css_src'])) {
 			foreach ($this->content['css_src'] as $css_src) {
@@ -1805,7 +1806,11 @@ class qa_html_theme_base
 			$this->output_split($post['upvotes_view'], 'qa-upvote-count');
 			$this->output_split($post['downvotes_view'], 'qa-downvote-count');
 		} else {
-			$this->output_split($post['netvotes_view'], 'qa-netvote-count');
+            $post['netvotes_view']['prefix'] = '<span class="sr-only">' . qa_lang_html('main/netvote_of_question') . '</span>';
+		    if ($post['raw']['netvotes'] < 0) {
+                $post['netvotes_view']['prefix'] .= '<span class="sr-only"> minus </span>';
+            }
+		    $this->output_split($post['netvotes_view'], 'qa-netvote-count');
 		}
 
 		$this->output('</div>');
@@ -2277,9 +2282,9 @@ class qa_html_theme_base
 		if (!empty($a_list)) {
 			$this->part_title($a_list);
 
-			$this->output('<div class="qa-a-list' . ($this->list_vote_disabled($a_list['as']) ? ' qa-a-list-vote-disabled' : '') . '" ' . @$a_list['tags'] . '>', '');
+			$this->output('<ol aria-label="' . qa_lang_html('question/answer_button') . '" class="qa-a-list' . ($this->list_vote_disabled($a_list['as']) ? ' qa-a-list-vote-disabled' : '') . '" ' . @$a_list['tags'] . '>', '');
 			$this->a_list_items($a_list['as']);
-			$this->output('</div> <!-- END qa-a-list -->', '');
+			$this->output('</ol> <!-- END qa-a-list -->', '');
 		}
 	}
 
@@ -2294,7 +2299,7 @@ class qa_html_theme_base
 	{
 		$extraclass = @$a_item['classes'] . ($a_item['hidden'] ? ' qa-a-list-item-hidden' : ($a_item['selected'] ? ' qa-a-list-item-selected' : ''));
 
-		$this->output('<div class="qa-a-list-item ' . $extraclass . '" ' . @$a_item['tags'] . '>');
+		$this->output('<li class="qa-a-list-item ' . $extraclass . '" ' . @$a_item['tags'] . '>');
 
         $this->a_item_main($a_item);
 		if (isset($a_item['main_form_tags'])) {
@@ -2310,7 +2315,7 @@ class qa_html_theme_base
 
 		$this->a_item_clear();
 
-		$this->output('</div> <!-- END qa-a-list-item -->', '');
+		$this->output('</li> <!-- END qa-a-list-item -->', '');
 	}
 
 	public function a_item_main($a_item)
@@ -2388,9 +2393,9 @@ class qa_html_theme_base
 	public function c_list($c_list, $class)
 	{
 		if (!empty($c_list)) {
-			$this->output('', '<div class="' . $class . '-c-list"' . (@$c_list['hidden'] ? ' style="display:none;"' : '') . ' ' . @$c_list['tags'] . '>');
+			$this->output('', '<ol aria-label="' . qa_lang_html('question/comments') . '" class="' . $class . '-c-list"' . (@$c_list['hidden'] ? ' style="display:none;"' : '') . ' ' . @$c_list['tags'] . '>');
 			$this->c_list_items($c_list['cs']);
-			$this->output('</div> <!-- END qa-c-list -->', '');
+			$this->output('</ol> <!-- END qa-c-list -->', '');
 		}
 	}
 
@@ -2405,7 +2410,7 @@ class qa_html_theme_base
 	{
 		$extraclass = @$c_item['classes'] . (@$c_item['hidden'] ? ' qa-c-item-hidden' : '');
 
-		$this->output('<div class="qa-c-list-item ' . $extraclass . '" ' . @$c_item['tags'] . '>');
+		$this->output('<li class="qa-c-list-item ' . $extraclass . '" ' . @$c_item['tags'] . '>');
 
 		if (isset($c_item['vote_view']) && isset($c_item['main_form_tags'])) {
 			// form for comment voting buttons
@@ -2418,7 +2423,7 @@ class qa_html_theme_base
 		$this->c_item_main($c_item);
 		$this->c_item_clear();
 
-		$this->output('</div> <!-- END qa-c-item -->');
+		$this->output('</li> <!-- END qa-c-item -->');
 	}
 
 	public function c_item_main($c_item)
