@@ -209,6 +209,7 @@
 		'voted_qs_in_x' => 'Fragen mit den meisten positiven Bewertungen in ^',
 		'voted_qs_title' => 'Am besten bewertete Fragen',
 		'voted_up_popup' => 'Positive Bewertung zurücknehmen',
+		'netvote_of_question' => 'Bewertung der Frage:',
 		'written' => '',
 		'x_ago' => 'vor ^',
 		'x_answers' => '^ Antworten',
