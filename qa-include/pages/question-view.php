@@ -1083,10 +1083,11 @@ function qa_page_q_add_c_form(&$qa_content, $question, $parent, $formid, $captch
 
 			$custom = qa_opt('show_custom_comment') ? trim(qa_opt('custom_comment')) : '';
 
+            $label = qa_lang_html(($question['postid'] == $parent['postid']) ? 'question/your_comment_q' : 'question/your_comment_a');
 			$form = array(
 				'tags' => 'method="post" action="' . qa_self_html() . '" name="c_form_' . qa_html($parent['postid']) . '"',
 
-				'title' => qa_lang_html(($question['postid'] == $parent['postid']) ? 'question/your_comment_q' : 'question/your_comment_a'),
+
 
 				'fields' => array(
 					'custom' => array(
@@ -1098,7 +1099,11 @@ function qa_page_q_add_c_form(&$qa_content, $question, $parent, $formid, $captch
 						qa_editor_load_field($editor, $qa_content, @$in['content'], @$in['format'], $prefix . 'content', 4, $loadfocusnow, $loadfocusnow),
 						array(
 							'error' => qa_html(@$errors['content']),
-						)
+						),
+                        [
+                            'label' => $label,
+                            'id' => $prefix . 'content'
+                        ]
 					),
 				),
 
