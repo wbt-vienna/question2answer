@@ -596,7 +596,11 @@ class qa_html_theme_base
 
 	public function nav_list($navigation, $class, $level = null)
 	{
-		$this->output('<ul role="tablist" class="qa-' . $class . '-list' . (isset($level) ? (' qa-' . $class . '-list-' . $level) : '') . '">');
+        $role = 'role="tablist"';
+	    foreach ($navigation as $key => $navlink) {
+            $role = isset($navlink['role']) ? 'role="presentation"' : $role;
+        }
+	    $this->output('<ul ' . $role . ' class="qa-' . $class . '-list' . (isset($level) ? (' qa-' . $class . '-list-' . $level) : '') . '">');
 
 		$index = 0;
 
@@ -605,12 +609,11 @@ class qa_html_theme_base
 			$this->set_context('nav_index', $index++);
 			$this->nav_item($key, $navlink, $class, $level);
 		}
+        $this->output('</ul>');
 
-		$this->clear_context('nav_key');
-		$this->clear_context('nav_index');
-
-		$this->output('</ul>');
-	}
+        $this->clear_context('nav_key');
+        $this->clear_context('nav_index');
+    }
 
 	public function nav_clear($navtype)
 	{
@@ -627,8 +630,9 @@ class qa_html_theme_base
 			'/' => '-',
 		));
 
-		$this->output('<li class="qa-' . $class . '-item' . (@$navlink['opposite'] ? '-opp' : '') .
-			(@$navlink['state'] ? (' qa-' . $class . '-' . $navlink['state']) : '') . ' qa-' . $class . '-' . $suffix . '">');
+        $role = isset($navlink['role']) ? $navlink['role'] : 'tab';
+		$this->output('<li role="' . $role . '" class="qa-' . $class . '-item' . (@$navlink['opposite'] ? '-opp' : '') .
+			(@$navlink['state'] ? (' qa-' . $class . '-' . $navlink['state']) : '') . ' qa-' . $class . '-' . $suffix . '" ' . ((@$navlink['selected'] && $role == 'tab') ? (' aria-selected="true"') : '') . '>');
 		$this->nav_link($navlink, $class);
 
 		$subnav = isset($navlink['subnav']) ? $navlink['subnav'] : array();
@@ -641,14 +645,13 @@ class qa_html_theme_base
 
 	public function nav_link($navlink, $class)
 	{
-		$role = isset($navlink['role']) ? $navlink['role'] : 'tab';
 	    if (isset($navlink['url'])) {
 			$this->output(
-				'<a role="' . $role . '" href="' . $navlink['url'] . '" class="qa-' . $class . '-link' .
+				'<a href="' . $navlink['url'] . '" class="qa-' . $class . '-link' .
 				(@$navlink['selected'] ? (' qa-' . $class . '-selected') : '') .
 				(@$navlink['favorited'] ? (' qa-' . $class . '-favorited') : '') .
 				'"' . (strlen(@$navlink['popup']) ? (' title="' . $navlink['popup'] . '"') : '') .
-				(isset($navlink['target']) ? (' target="' . $navlink['target'] . '"') : '') . (@$navlink['selected'] ? (' aria-selected="true"') : '') . '>' . $navlink['label'] .
+				(isset($navlink['target']) ? (' target="' . $navlink['target'] . '"') : '') . '>' . $navlink['label'] .
 				'</a>'
 			);
 		} else {
@@ -1389,7 +1392,7 @@ class qa_html_theme_base
 	{
 		$tag = ($columns > 1) ? 'span' : 'div';
 
-		$this->output('<' . $tag . ' class="qa-form-' . $style . '-error">' . $field['error'] . '</' . $tag . '>');
+		$this->output('<' . $tag . ' role="alert" aria-describedby="' . $field['id'] . '" class="qa-form-' . $style . '-error">' . $field['error'] . '</' . $tag . '>');
 	}
 
 	public function form_note($field, $style, $columns)
@@ -1689,7 +1692,7 @@ class qa_html_theme_base
 
 	public function q_item_main($q_item)
 	{
-		$this->output('<div class="qa-q-item-main">');
+		$this->output('<article class="qa-q-item-main">');
 
 		$this->view_count($q_item);
 		$this->q_item_title($q_item);
@@ -1699,7 +1702,7 @@ class qa_html_theme_base
 		$this->post_tags($q_item, 'qa-q-item');
 		$this->q_item_buttons($q_item);
 
-		$this->output('</div>');
+		$this->output('</article>');
 	}
 
 	public function q_item_clear()
