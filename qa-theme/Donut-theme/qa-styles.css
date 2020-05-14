@@ -13,3 +13,8 @@ ol {
     list-style-type: none;
     padding-left: 0;
 }
+
+*:focus {
+    outline: none !important;
+    box-shadow: 0 0 3pt 2pt lightskyblue !important;
+}
