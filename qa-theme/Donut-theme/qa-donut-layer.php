@@ -588,7 +588,7 @@
         {
             $this->output(
                     '<div class="input-group">',
-                    '<input type="text" ' . $search['field_tags'] . ' value="' . @$search['value'] . '" class="qa-search-field form-control" placeholder="' . $search['button_label'] . '"/>' );
+                    '<input type="search" aria-label="' . qa_lang_html('main/search_button') . '" ' . $search['field_tags'] . ' value="' . @$search['value'] . '" class="qa-search-field form-control" placeholder="' . $search['button_label'] . '"/>' );
             $this->search_button( $search );
             $this->output( '</div>' );
         }
@@ -967,7 +967,7 @@
             if ( isset( $notice['form_tags'] ) )
                 $this->output( '<form ' . $notice['form_tags'] . '>' );
 
-            $this->output( '<button ' . $notice['close_tags'] . ' type="submit" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' );
+            $this->output( '<button ' . $notice['close_tags'] . ' type="submit" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">' . qa_lang_html('main/close_msg') . '</span></button>' );
 
             $this->output_raw( $notice['content'] );
 
@@ -986,7 +986,7 @@
                 $this->output(
                         '<div class="donut-error alert alert-dismissible" role="alert">',
                         $error,
-                        '<button class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>',
+                        '<button class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">' . qa_lang_html('main/close_msg') . '</span></button>',
                         '</div>'
                 );
             }
