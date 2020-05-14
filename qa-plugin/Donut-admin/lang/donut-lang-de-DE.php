@@ -1,6 +1,6 @@
 <?php
     return array(
-        'donut_theme_settings'        => 'Donut Theme Einstellung',
+        'donut_theme_settings'        => 'Donut Theme Einstellungen',
         'general'                     => 'Allgemein',
         'options_reset'               => 'Donut Theme Einstellungen zurücksetzen',
         'options_saved'               => 'Donut Theme Einstellungen gespeichert',
