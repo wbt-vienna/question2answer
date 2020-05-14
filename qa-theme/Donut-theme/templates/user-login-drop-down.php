@@ -1,7 +1,8 @@
 <ul class="nav navbar-nav navbar-right login-nav" role="presentation">
-    <li class="dropdown login-dropdown login active">
+    <li class="dropdown login-dropdown login active" role="presentation">
         <a href="#" data-toggle="dropdown" class="navbar-login-button" title="<?php echo qa_lang_html( 'users/login_button' ); ?>">
             <span class="fa fa-sign-in text-muted"></span>
+            <span class="hidden-md" style="font-size: 14px"><?php echo qa_lang_html( 'users/login_button' ); ?></span>
         </a>
         <ul class="dropdown-menu" role="menu" id="login-dropdown-menu">
             <?php
@@ -69,7 +70,7 @@
                         <label for="qa-userid">
                             <?php echo trim( qa_lang_html( 'users/email_handle_label' ), ':' ); ?>
                         </label>
-                        <input type="text" class="form-control" id="qa-userid" name="emailhandle"
+                        <input type="text" class="form-control" id="qa-userid" name="emailhandle" autocomplete="username"
                                placeholder="<?php echo trim( qa_lang_html( 'users/email_handle_label' ), ':' ); ?>"/>
                     </li>
 
@@ -77,7 +78,7 @@
                         <label for="qa-password">
                             <?php echo trim( qa_lang_html( 'users/password_label' ), ':' ); ?>
                         </label>
-                        <input type="password" class="form-control" id="qa-password" name="password"
+                        <input type="password" class="form-control" id="qa-password" name="password" autocomplete="current-password"
                                placeholder="<?php echo trim( qa_lang_html( 'users/password_label' ), ':' ); ?>"/>
                     </li>
                     <li>
