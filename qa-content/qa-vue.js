@@ -29,4 +29,13 @@ window.addEventListener('load', function () {
         }
         elem.show();
     });
+    let alertElem = $("*[role='alert']")[0];
+    let innerHTML = alertElem.innerHTML;
+    alertElem.innerHTML = '';
+    if (alertElem) {
+        setTimeout(function () {
+            alertElem.innerHTML = innerHTML;
+            alertElem.focus();
+        }, 300);
+    }
 });
