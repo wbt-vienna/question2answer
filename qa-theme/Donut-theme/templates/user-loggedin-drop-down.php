@@ -12,20 +12,20 @@
     }
 
 ?>
-<ul class="nav navbar-nav navbar-right user-nav">
+<ul class="nav navbar-nav navbar-right user-nav" role="presentation">
     <?php if (qa_opt('q2apro_onsitenotifications_enabled') && !empty($this->content['loggedin']['suffix'])): ?>
-    <li class="notf-bubble visible-lg">
+    <li class="notf-bubble visible-lg" role="presentation">
         <?php echo $this->content['loggedin']['suffix'] ?>
     </li>
     <?php endif ?>
-    <li class="dropdown user-dropdown">
-        <a href="javascript:;" class="navbar-user-img dropdown-toggle" data-toggle="dropdown">
+    <li class="dropdown user-dropdown" role="presentation">
+        <a href="javascript:;" title="<?php echo qa_lang_sub( 'main/nav_login_link_title' , qa_get_logged_in_handle()); ?>" class="navbar-user-img dropdown-toggle" data-toggle="dropdown">
             <?php echo $logged_in_user_avatar; ?>
         </a>
         <ul class="dropdown-menu" role="menu" id="user-dropdown-menu">
-            <li class="dropdown-header">Signed in as <?php echo qa_get_logged_in_handle(); ?></li>
+            <li class="dropdown-header"><?php echo qa_lang_sub( 'main/signed_in_as' , qa_get_logged_in_handle()); ?></li>
             <?php if ( qa_get_logged_in_level() >= QA_USER_LEVEL_ADMIN ): ?>
-                <li class="dropdown-header">Admin Section</li>
+                <li class="dropdown-header"><?php echo qa_lang_html( 'main/admin_section'); ?></li>
                 <li>
                     <a href="<?php echo qa_path_html( 'admin' ) ?>">
                         <span class="fa fa-cog"></span>
@@ -38,12 +38,12 @@
                         <?php echo donut_lang( 'donut_theme_settings' ); ?>
                     </a>
                 </li>
-                <li class="dropdown-header">Profile Section</li>
+                <li class="dropdown-header"><?php echo qa_lang_html( 'main/profile_section'); ?></li>
             <?php endif ?>
             <li>
                 <a href="<?php echo qa_path_html( 'user/' . qa_get_logged_in_handle() ); ?>">
                     <span class="fa fa-user"></span>
-                    <?php echo qa_get_logged_in_handle(); ?>
+                    <?php echo qa_lang_html( 'main/user_account'); ?> "<?php echo qa_get_logged_in_handle(); ?>"
                 </a>
             </li>
             <?php if ( !defined( 'QA_WORDPRESS_INTEGRATE_PATH' ) ): ?>
@@ -55,12 +55,6 @@
                         </a>
                     </li>
                 <?php endif ?>
-                <li>
-                    <a href="<?php echo qa_path_html( 'user/' . qa_get_logged_in_handle() ); ?>">
-                        <span class="fa fa-money"></span>
-                        <?php echo qa_get_logged_in_points() . ' ' . qa_lang_html( 'admin/points_title' ) ?>
-                    </a>
-                </li>
                 <?php foreach ( $this->content['navigation']['user'] as $key => $user_nav ): ?>
                     <?php if ( $key !== 'logout' ): ?>
                         <li>
