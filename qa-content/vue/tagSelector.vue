@@ -42,9 +42,9 @@
                 if (this.allChildren.indexOf(tagId) === -1) {
                     return;
                 }
-                let parentIds = tagUtil.getAllParentIds(tagId, this.tags);
-                let childIds = tagUtil.getAllChildIds(tagId, this.tags);
-                let hasAlreadyChild = childIds.reduce((total, currentId) => {
+                var parentIds = tagUtil.getAllParentIds(tagId, this.tags);
+                var childIds = tagUtil.getAllChildIds(tagId, this.tags);
+                var hasAlreadyChild = childIds.reduce((total, currentId) => {
                     return total || this.elementTags.indexOf(currentId) !== -1;
                 }, false);
                 if (!hasAlreadyChild && (!tagUtil.getTag(tagId, this.tags).notAssignable)) {
@@ -72,7 +72,7 @@
                 this.emitChange();
             },
             emitChange() {
-                let elem = document.getElementById('tags');
+                var elem = document.getElementById('tags');
                 elem.value = this.elementTags.reduce((total, tag) => {
                     return total + tag + " ";
                 }, "");
@@ -81,10 +81,10 @@
             }
         },
         mounted() {
-            let thiz = this;
-            let tags = JSON.parse(qa_all_tags);
-            let tagInput = document.getElementById('tags');
-            let value = tagInput.value ? tagInput.value.toUpperCase() : tagInput.value;
+            var thiz = this;
+            var tags = JSON.parse(qa_all_tags);
+            var tagInput = document.getElementById('tags');
+            var value = tagInput.value ? tagInput.value.toUpperCase() : tagInput.value;
             thiz.elementTags = value ? value.split(' ') : [];
             thiz.tags = tags;
             thiz.startTagIds = ['ACCESSIBILITY', 'META'];

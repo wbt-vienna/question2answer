@@ -8,31 +8,31 @@ function qa_init_vue_tag_selector(baseElem) {
 }
 
 window.addEventListener('load', function () {
-    let tags = JSON.parse(qa_all_tags);
+    var tags = JSON.parse(qa_all_tags);
     $('.qa-tag-link').each((index, element) => {
-        let elem = $(element);
+        var elem = $(element);
         if (tags) {
-            let id = elem.text();
+            var id = elem.text();
             elem.text(tagUtil.getLabel(id, tags));
             elem.css(tagUtil.getColorStyleObject(id, tags));
         }
         elem.show();
     });
     $('h1').each((i, element) => {
-        let elem = $(element);
-        let searchString = 'Fragen mit Tag "'
-        let text = elem.text();
-        let index = text.indexOf(searchString);
+        var elem = $(element);
+        var searchString = 'Fragen mit Tag "'
+        var text = elem.text();
+        var index = text.indexOf(searchString);
         if (index !== -1 && tags) {
-            let id = text.substring(17, text.lastIndexOf('"'));
+            var id = text.substring(17, text.lastIndexOf('"'));
             elem.text(searchString + tagUtil.getLabel(id, tags) + '"');
         }
         elem.show();
     });
-    let alertElem = $("*[role='alert']")[0];
-    let innerHTML = alertElem.innerHTML;
-    alertElem.innerHTML = '';
+    var alertElem = $("*[role='alert']")[0];
     if (alertElem) {
+        var innerHTML = alertElem.innerHTML;
+        alertElem.innerHTML = '';
         setTimeout(function () {
             alertElem.innerHTML = innerHTML;
             alertElem.focus();
