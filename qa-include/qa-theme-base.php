@@ -1311,27 +1311,27 @@ class qa_html_theme_base
 
 	public function form_checkbox($field, $style)
 	{
-		$this->output('<input id="' . @$field['id'] .'" ' . @$field['tags'] . ' type="checkbox" value="1"' . (@$field['value'] ? ' checked' : '') . ' class="qa-form-' . $style . '-checkbox"/>');
+		$this->output('<input ' . @$field['tags'] . ' type="checkbox" value="1"' . (@$field['value'] ? ' checked' : '') . ' class="qa-form-' . $style . '-checkbox"/>');
 	}
 
 	public function form_static($field, $style)
 	{
-		$this->output('<span id="' . @$field['id'] .'" class="qa-form-' . $style . '-static">' . @$field['value'] . '</span>');
+		$this->output('<span class="qa-form-' . $style . '-static">' . @$field['value'] . '</span>');
 	}
 
 	public function form_password($field, $style)
 	{
-		$this->output('<input id="' . @$field['id'] .'" ' . @$field['tags'] . ' type="password" value="' . @$field['value'] . '" class="qa-form-' . $style . '-text"/>');
+		$this->output('<input ' . @$field['tags'] . ' type="password" value="' . @$field['value'] . '" class="qa-form-' . $style . '-text"/>');
 	}
 
 	public function form_number($field, $style)
 	{
-		$this->output('<input id="' . @$field['id'] .'" ' . @$field['tags'] . ' type="text" value="' . @$field['value'] . '" class="qa-form-' . $style . '-number"/>');
+		$this->output('<input ' . @$field['tags'] . ' type="text" value="' . @$field['value'] . '" class="qa-form-' . $style . '-number"/>');
 	}
 
 	public function form_file($field, $style)
 	{
-		$this->output('<input id="' . @$field['id'] .'" ' . @$field['tags'] . ' type="file" class="qa-form-' . $style . '-file"/>');
+		$this->output('<input ' . @$field['tags'] . ' type="file" class="qa-form-' . $style . '-file"/>');
 	}
 
 	/**
@@ -1380,12 +1380,12 @@ class qa_html_theme_base
 
 	public function form_text_single_row($field, $style)
 	{
-		$this->output('<input id="' . @$field['id'] .'" ' . @$field['tags'] . ' type="text" value="' . @$field['value'] . '" class="qa-form-' . $style . '-text"/>');
+		$this->output('<input ' . @$field['tags'] . ' type="text" value="' . @$field['value'] . '" class="qa-form-' . $style . '-text"/>');
 	}
 
 	public function form_text_multi_row($field, $style)
 	{
-		$this->output('<textarea id="' . @$field['id'] .'" ' . @$field['tags'] . ' rows="' . (int)$field['rows'] . '" cols="40" class="qa-form-' . $style . '-text">' . @$field['value'] . '</textarea>');
+		$this->output('<textarea ' . @$field['tags'] . ' rows="' . (int)$field['rows'] . '" cols="40" class="qa-form-' . $style . '-text">' . @$field['value'] . '</textarea>');
 	}
 
 	public function form_error($field, $style, $columns)
