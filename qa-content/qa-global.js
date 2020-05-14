@@ -97,15 +97,14 @@ function qa_vote_click(elem)
 					mess.className = 'qa-error';
 					mess.style.display = 'none';
 					mess.role = 'alert';
+					mess.innerHTML = lines[1];
 				}
-				mess.setAttribute('aria-live', 'assertive');
+				mess.setAttribute('role', 'alert');
+				elem.setAttribute('aria-describedby', mess.id);
 
 				var postelem = document.getElementById(anchor);
 				var e = postelem.parentNode.insertBefore(mess, postelem);
 				qa_reveal(e);
-				setTimeout(function () {
-					mess.innerHTML = lines[1]; //in order to be read by screenreader
-				}, 100);
 			} else
 				qa_ajax_error();
 		}
