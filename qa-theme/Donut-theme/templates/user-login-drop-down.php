@@ -2,7 +2,7 @@
     <li class="dropdown login-dropdown login active" role="presentation">
         <a href="#" data-toggle="dropdown" class="navbar-login-button" title="<?php echo qa_lang_html( 'users/login_button' ); ?>">
             <span class="fa fa-sign-in text-muted"></span>
-            <span class="hidden-md" style="font-size: 14px"><?php echo qa_lang_html( 'users/login_button' ); ?></span>
+            <span class="hidden-xs hidden-sm hidden-md" style="font-size: 14px"><?php echo qa_lang_html( 'users/login_button' ); ?></span>
         </a>
         <ul class="dropdown-menu" role="menu" id="login-dropdown-menu">
             <?php
