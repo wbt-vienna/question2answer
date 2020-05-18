@@ -471,5 +471,5 @@ if (qa_opt('do_count_q_views') && !$formrequested && !qa_is_http_post() && qa_is
 	$qa_content['inc_views_postid'] = $questionid;
 }
 
-
+$qa_content['q_view']['url'] = '';
 return $qa_content;
