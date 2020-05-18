@@ -117,7 +117,7 @@
 		'register_suspended' => 'Das Erstellen neuer Konten ist vorübergehend deaktiviert. Bitte versuchen Sie es später wieder.',
 		'register_title' => 'Konto erstellen',
 		'registered_label' => 'Registriert:',
-		'registered_user' => 'Konto beantragt',
+		'registered_user' => 'Registrierter User',
 		'remember' => 'Merken',
 		'remember_label' => 'Auf diesem Computer angemeldet bleiben',
 		'remove_avatar' => 'Avatar entfernen:',
