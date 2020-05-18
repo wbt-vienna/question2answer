@@ -420,6 +420,7 @@ function qa_post_html_fields($post, $userid, $cookieid, $usershtml, $dummy, $opt
 			'linksnewwindow' => @$options['linksnewwindow'],
 		));
 
+        $fields['content'] = !empty($fields['content']) ? $fields['content'] : $fields['title'];
 		if ($microdata) {
 			$fields['content'] = '<div itemprop="text">' . $fields['content'] . '</div>';
 		}
