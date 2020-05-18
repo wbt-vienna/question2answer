@@ -1392,7 +1392,7 @@ class qa_html_theme_base
 	{
 		$tag = ($columns > 1) ? 'span' : 'div';
 
-		$this->output('<' . $tag . ' role="alert" aria-describedby="' . $field['id'] . '" class="qa-form-' . $style . '-error">' . $field['error'] . '</' . $tag . '>');
+		$this->output('<' . $tag . ' role="alert" aria-describedby="' . @$field['id'] . '" class="qa-form-' . $style . '-error">' . $field['error'] . '</' . $tag . '>');
 	}
 
 	public function form_note($field, $style, $columns)
