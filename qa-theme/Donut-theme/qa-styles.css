@@ -14,7 +14,7 @@ ol {
     padding-left: 0;
 }
 
-*:focus {
+*:focus, .qa-logo a:focus img {
     outline: none !important;
     box-shadow: 0 0 3pt 2pt lightskyblue !important;
 }
