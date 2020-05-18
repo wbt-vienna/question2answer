@@ -2031,7 +2031,7 @@ class qa_html_theme_base
 
 	public function post_tag_list($post, $class)
 	{
-        $this->output('<label for="taglist" id="taglistLabel" class="sr-only">' . qa_lang_html('main/list_of') . ' <span lang="en">' . qa_lang_html('main/nav_tags') . '</span></label>');
+        $this->output('<div id="taglistLabel" class="sr-only">' . qa_lang_html('main/list_of') . ' <span lang="en">' . qa_lang_html('main/nav_tags') . '</span></div>');
         $this->output('<ul id="taglist" aria-labelledby="taglistLabel" class="' . $class . '-tag-list">');
         foreach ($post['q_tags'] as $taghtml) {
 			$this->post_tag_item($taghtml, $class);
