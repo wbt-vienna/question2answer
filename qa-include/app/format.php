@@ -1688,7 +1688,11 @@ function qa_set_display_rules(&$qa_content, $effects)
  */
 function qa_set_up_tag_field(&$qa_content, &$field, $fieldname, $tags, $exampletags, $completetags, $maxtags)
 {
-    $qa_content['script_onloads'][] .= 'qa_init_vue_tag_selector();';
+    if (isset($qa_content['script_onloads'])) {
+        $qa_content['script_onloads'][] .= 'qa_init_vue_tag_selector();';
+    } else {
+        $qa_content['script_onloads'][] = 'qa_init_vue_tag_selector();';
+    }
     $template = '<a href="#" class="qa-tag-link" onclick="return qa_tag_click(this);">^</a>';
 
 	$qa_content['script_var']['qa_tag_template'] = $template;
