@@ -52,15 +52,14 @@ $usershtml = qa_userids_handles_html($questions);
 // Prepare content for theme
 
 $qa_content = qa_content_prepare(true);
-
-$qa_content['title'] = qa_lang_html_sub('main/questions_tagged_x', qa_html($tag));
+$qa_content['title'] = qa_lang_html_sub('main/questions_tagged_x', qa_html($GLOBALS['translateTag']($tag)));
 
 if (isset($userid) && isset($tagword)) {
 	$favoritemap = qa_get_favorite_non_qs_map();
 	$favorite = @$favoritemap['tag'][qa_strtolower($tagword['word'])];
 
 	$qa_content['favorite'] = qa_favorite_form(QA_ENTITY_TAG, $tagword['wordid'], $favorite,
-		qa_lang_sub($favorite ? 'main/remove_x_favorites' : 'main/add_tag_x_favorites', '"' . $GLOBALS['qa_all_tags'][strtoupper($tagword['word'])]->labelDE . '"'));
+		qa_lang_sub($favorite ? 'main/remove_x_favorites' : 'main/add_tag_x_favorites', '"' . $GLOBALS['translateTag']($tagword['word']) . '"'));
 }
 
 if (!count($questions))
@@ -82,7 +81,7 @@ foreach ($questions as $postid => $question) {
 
 $qa_content['canonical'] = qa_get_canonical();
 
-$qa_content['page_links'] = qa_html_page_links(qa_request(), $start, $pagesize, $tagword['tagcount'], qa_opt('pages_prev_next'));
+$qa_content['page_links'] = qa_html_page_links(qa_request(), $start, $pagesize, @$tagword['tagcount'], qa_opt('pages_prev_next'));
 
 if (empty($qa_content['page_links']))
 	$qa_content['suggest_next'] = qa_html_suggest_qs_tags(true);
