@@ -1126,7 +1126,8 @@
 
         function donut_tags_item( $item, $class, $spacer )
         {
-            $content = qa_db_read_one_value( qa_db_query_sub( "SELECT ^tagmetas.content FROM ^tagmetas WHERE ^tagmetas.tag =$ ", strip_tags( $item['label'] ) ), true );
+            $label = isset($item['label']) ? $item['label'] : null;
+            $content = qa_db_read_one_value( qa_db_query_sub( "SELECT ^tagmetas.content FROM ^tagmetas WHERE ^tagmetas.tag =$ ", strip_tags( $label ) ), true );
 
             if ( isset( $item ) )
                 $this->output(
