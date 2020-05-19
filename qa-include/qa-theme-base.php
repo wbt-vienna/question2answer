@@ -751,7 +751,7 @@ class qa_html_theme_base
 
 			$this->output('<div class="qa-main-heading">');
 			$this->favorite();
-			$this->output('<h1 style="display: none">');
+			$this->output('<h1>');
 			$this->title();
 			$this->output('</h1>');
 			$this->output('</div>');
@@ -1131,6 +1131,9 @@ class qa_html_theme_base
 				'<td class="qa-form-' . $style . '-data"' . (isset($colspan) ? (' colspan="' . $colspan . '"') : '') . '>'
 			);
 
+			if (isset($field['pretext'])) {
+                $this->output($field['pretext']);
+            }
 			if ($showfield)
 				$this->form_field($field, $style);
 
@@ -2032,8 +2035,8 @@ class qa_html_theme_base
 
 	public function post_tag_list($post, $class)
 	{
-        $this->output('<div id="taglistLabel" class="sr-only">' . qa_lang_html('main/list_of') . ' <span lang="en">' . qa_lang_html('main/nav_tags') . '</span></div>');
-        $this->output('<ul id="taglist" aria-labelledby="taglistLabel" class="' . $class . '-tag-list">');
+	    $this->output('<div id="taglistLabel' . $post['raw']['postid'] . '" class="sr-only">' . qa_lang_html('main/list_of') . ' <span lang="en">' . qa_lang_html('main/nav_tags') . '</span></div>');
+        $this->output('<ul id="taglist' . $post['raw']['postid'] . '" aria-labelledby="taglistLabel' . $post['raw']['postid'] . '" class="' . $class . '-tag-list">');
         foreach ($post['q_tags'] as $taghtml) {
 			$this->post_tag_item($taghtml, $class);
 		}
