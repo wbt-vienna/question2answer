@@ -1210,10 +1210,12 @@ function qa_db_page_full_selectspec($slugorpageid, $ispageid)
  */
 function qa_db_tag_recent_qs_selectspec($voteuserid, $tag, $start, $full = false, $count = null)
 {
-    $taglist = json_decode(file_get_contents("https://tags.asterics-foundation.org:4000/tag/$tag/selfandchildren/", 0, stream_context_create(["http" => ["timeout" => 1]])));
-    $func = function($value) { return $value->id; };
-    $tagids = array_map($func, $taglist);
-    $tagids = $tagids ? $tagids : array($tag);
+    $tagids = array($tag);
+    if (isset($GLOBALS['qa_all_tags'][$tag])) {
+        $taglist = json_decode(file_get_contents("https://tags.asterics-foundation.org:4000/tag/$tag/selfandchildren/", 0, stream_context_create(["http" => ["timeout" => 1]])));
+        $func = function($value) { return $value->id; };
+        $tagids = array_map($func, $taglist);
+    }
 
     $count = isset($count) ? min($count, QA_DB_RETRIEVE_QS_AS) : QA_DB_RETRIEVE_QS_AS;
 
