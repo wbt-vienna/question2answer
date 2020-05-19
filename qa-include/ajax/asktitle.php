@@ -24,6 +24,8 @@ require_once QA_INCLUDE_DIR . 'util/string.php';
 require_once QA_INCLUDE_DIR . 'app/users.php';
 require_once QA_INCLUDE_DIR . 'app/format.php';
 
+session_start();
+
 
 // Collect the information we need from the database
 
@@ -62,7 +64,8 @@ if ($doexampletags) {
 		if ($weight < $minweight)
 			break;
 
-		$exampletags[] = $tag;
+        $translation = $_SESSION['qa_all_tags'][$tag]->labelDE;
+		$exampletags[] = $translation ? $translation : $tag;
 		if (count($exampletags) >= $maxcount)
 			break;
 	}
