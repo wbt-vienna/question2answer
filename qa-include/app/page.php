@@ -19,11 +19,43 @@
 	More about this license: http://www.question2answer.org/license.php
 */
 require_once QA_BASE_DIR . 'qa-config-constants.php';
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 if (!defined('QA_VERSION')) { // don't allow this page to be requested directly from browser
 	header('Location: ../../');
 	exit;
 }
+
+function getConstantFn($key) {
+    return $GLOBALS[$key] ? $GLOBALS[$key] : $_SESSION[$key];
+};
+$allTagsString = file_get_contents("https://tags.asterics-foundation.org:4000/tags", 0, stream_context_create(["http" => ["timeout" => 1]]));
+$allTagsString = $allTagsString ? $allTagsString : QA_ALL_TAGS_STRING_FALLBACK;
+$GLOBALS['qa_all_tags'] = array_column(json_decode($allTagsString), NULL, 'id');
+$GLOBALS['qa_all_tags_de'] = array_column(json_decode($allTagsString), 'labelDE');
+$GLOBALS['qa_all_tags_id'] = array_column(json_decode($allTagsString), 'id');
+function translateTag ($tagID) {
+    if (isset(getConstantFn('qa_all_tags')[strtoupper($tagID)])) {
+        return getConstantFn('qa_all_tags')[strtoupper($tagID)]->labelDE;
+    }
+    return $tagID;
+};
+function untranslateTag ($tagName) {
+    $id = array_search($tagName, getConstantFn('qa_all_tags_de'));
+    if ($id !== FALSE) {
+        return getConstantFn('qa_all_tags_id')[$id];
+    }
+    return $tagName;
+};
+$GLOBALS['translateTag'] = 'translateTag';
+$GLOBALS['untranslateTag'] = 'untranslateTag';
+$_SESSION['qa_all_tags'] = $GLOBALS['qa_all_tags'];
+$_SESSION['qa_all_tags_de'] = $GLOBALS['qa_all_tags_de'];
+$_SESSION['qa_all_tags_id'] = $GLOBALS['qa_all_tags_id'];
+$_SESSION['translateTag'] = $GLOBALS['translateTag'];
+$_SESSION['untranslateTag'] = $GLOBALS['untranslateTag'];
 
 require_once QA_INCLUDE_DIR . 'app/cookies.php';
 require_once QA_INCLUDE_DIR . 'app/format.php';
@@ -802,22 +834,14 @@ function qa_content_prepare($voting = false, $categoryids = array())
 
 	$qa_content['script_rel'] = array('qa-content/jquery-3.3.1.min.js');
 	$qa_content['script_rel'][] = 'qa-content/qa-global.js?' . QA_VERSION;
-    $qa_content['script_rel'][] = 'qa-content/qa-vue.js';
-    $qa_content['script_rel'][] = 'qa-content/util/tagUtil.js';
-    $qa_content['script_src'][] = 'https://unpkg.com/vue';
-    $qa_content['script_src'][] = 'https://unpkg.com/http-vue-loader';
+    $qa_content['script_rel'][] = 'qa-content/qa-load.js';
 
 	if ($voting)
 		$qa_content['error'] = @$qa_page_error_html;
 
-	$allTagsString = file_get_contents("https://tags.asterics-foundation.org:4000/tags", 0, stream_context_create(["http" => ["timeout" => 1]]));
-	$allTagsString = $allTagsString ? $allTagsString : QA_ALL_TAGS_STRING_FALLBACK;
-    $GLOBALS['qa_all_tags'] = array_column(json_decode($allTagsString), NULL, 'id');
-
 	$qa_content['script_var'] = array(
 		'qa_root' => qa_path_to_root(),
-		'qa_request' => $request,
-        'qa_all_tags' => $allTagsString
+		'qa_request' => $request
 	);
 
 	return $qa_content;
