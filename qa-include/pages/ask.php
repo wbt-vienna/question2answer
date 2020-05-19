@@ -240,7 +240,7 @@ if (!strlen($custom)) {
 }
 
 if (qa_opt('do_ask_check_qs') || qa_opt('do_example_tags')) {
-	$qa_content['form']['fields']['title']['tags'] .= ' onchange="qa_title_change(this.value);"';
+	$qa_content['form']['fields']['title']['tags'] .= ' oninput="qa_title_change(this.value);"';
 
 	if (strlen(@$in['title'])) {
 		$qa_content['script_onloads'][] = 'qa_title_change('.qa_js($in['title']).');';
