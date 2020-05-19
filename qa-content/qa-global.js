@@ -447,29 +447,32 @@ function qa_scroll_page_to(scroll)
 
 
 // Ask form
+var timeoutHanlder = null;
 
-function qa_title_change(value)
-{
-	qa_ajax_post('asktitle', {title: value}, function(lines) {
-		if (lines[0] == '1') {
-			if (lines[1].length) {
-				qa_tags_examples = lines[1];
-				qa_tag_hints(true);
-			}
+function qa_title_change(value) {
+	clearTimeout(timeoutHanlder);
+	timeoutHanlder = setTimeout(function () {
+		qa_ajax_post('asktitle', {title: value}, function (lines) {
+			if (lines[0] == '1') {
+				if (lines[1].length) {
+					qa_tags_examples = lines[1];
+					qa_tag_hints(true);
+				}
 
-			if (lines.length > 2) {
-				var simelem = document.getElementById('similar');
-				if (simelem)
-					simelem.innerHTML = lines.slice(2).join('\n');
-			}
+				if (lines.length > 2) {
+					var simelem = document.getElementById('similar');
+					if (simelem)
+						simelem.innerHTML = lines.slice(2).join('\n');
+				}
 
-		} else if (lines[0] == '0')
-			alert(lines[1]);
-		else
-			qa_ajax_error();
-	});
+			} else if (lines[0] == '0')
+				alert(lines[1]);
+			else
+				qa_ajax_error();
+		});
 
-	qa_show_waiting_after(document.getElementById('similar'), true);
+		qa_show_waiting_after(document.getElementById('similar'), true);
+	}, 400);
 }
 
 function qa_html_unescape(html)
@@ -510,7 +513,7 @@ function qa_tag_click(link)
 
 function qa_tag_hints(skipcomplete)
 {
-	/*var elem = document.getElementById('tags');
+	var elem = document.getElementById('tags');
 	var html = '';
 	var completed = false;
 
@@ -531,7 +534,8 @@ function qa_tag_hints(skipcomplete)
 	// set title visiblity and hint list
 	document.getElementById('tag_examples_title').style.display = (html && !completed) ? '' : 'none';
 	document.getElementById('tag_complete_title').style.display = (html && completed) ? '' : 'none';
-	document.getElementById('tag_hints').innerHTML = html;*/
+	document.getElementById('tag_hints').innerHTML = html;
+	document.getElementById('tag_hints').setAttribute('aria-labelledby', (html && completed) ? 'tag_complete_title' : 'tag_examples_title');
 }
 
 function qa_tags_to_html(tags, matchlc)
