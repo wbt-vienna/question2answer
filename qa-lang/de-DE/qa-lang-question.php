@@ -37,7 +37,7 @@
         'a_notify_label' => 'Ich möchte eine E-Mail erhalten, wenn meine Antwort ausgewählt oder kommentiert wird',
         'a_notify_x_label' => 'Ich möchte eine E-Mail (^) erhalten, wenn meine Antwort ausgewählt oder kommentiert wird',
         'a_waiting_your_approval' => 'Diese Antwort wartet auf Freigabe durch Sie',
-        'a_your_waiting_approval' => 'Ihre Frage wird in Kürze überprüft und dann freigegeben.',
+        'a_your_waiting_approval' => 'Ihre Antwort wird in Kürze überprüft und dann freigegeben.',
         'add_answer_button' => 'Antwort schreiben',
         'add_comment_button' => 'Kommentar schreiben',
         'add_q_favorites' => 'Diese Frage zu meinen Favoriten hinzufügen',
