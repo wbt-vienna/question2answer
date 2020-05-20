@@ -176,7 +176,7 @@
 		'selected' => 'ausgewählt',
 		'send_button' => 'Abschicken',
 		'since_x' => 'seit ^',
-		'suggest_ask' => 'Machen Sie den Anfang und ^1stellen eine Frage^2.',
+		'suggest_ask' => 'Machen Sie den Anfang und ^1stellen Sie eine Frage^2.',
 		'suggest_category_qs' => '^1Alle Fragen in dieser Kategorie anzeigen^2.',
 		'suggest_qs' => '^1Alle Fragen anzeigen^2.',
 		'suggest_qs_tags' => '^1Alle Fragen anzeigen^2 oder ^3die beliebtesten Tags ansehen^4.',
