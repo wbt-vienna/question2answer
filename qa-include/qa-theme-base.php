@@ -840,7 +840,9 @@ class qa_html_theme_base
 			$this->set_context('part', $key);
 			$this->main_part($key, $part);
 		}
-
+        if (isset($content['raw'])) {
+            echo $content['raw'];
+        }
 		$this->clear_context('part');
 	}
 

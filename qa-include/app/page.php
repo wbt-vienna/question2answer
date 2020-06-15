@@ -446,6 +446,7 @@ function qa_page_routing()
 		'admin/usertitles' => 'pages/admin/admin-usertitles.php',
 		'answers/' => 'pages/answers.php',
 		'ask' => 'pages/ask.php',
+		'test' => 'pages/test.php',
 		'categories/' => 'pages/categories.php',
 		'comments/' => 'pages/comments.php',
 		'confirm' => 'pages/confirm.php',
@@ -659,6 +660,11 @@ function qa_content_prepare($voting = false, $categoryids = array())
 			'label' => qa_lang_html('main/nav_ask'),
 		);
 	}
+
+    $qa_content['navigation']['main']['test'] = array(
+        'url' => qa_path_html('test'),
+        'label' => 'Test-Seite',
+    );
 
 
 	if (qa_get_logged_in_level() >= QA_USER_LEVEL_ADMIN || !qa_user_maximum_permit_error('permit_moderate') ||
