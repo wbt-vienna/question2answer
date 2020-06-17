@@ -29,7 +29,7 @@
 	return array(
 		'block_ip_button' => 'IP-Adressen sperren',
 		'captcha_confirm_fix' => '^5Bestätigen Sie Ihre E-Mail-Adresse^6 um diese Abfrage (Captcha) zu vermeiden.',
-		'captcha_error' => 'Bitte die Abfrage (Captcha) ausfüllen',
+		'captcha_error' => 'Antwort auf Captcha-Abfrage inkorrekt - bitte versuchen Sie es erneut!',
 		'captcha_label' => 'Anti-Spam-Abfrage (Captcha):',
 		'captcha_login_fix' => 'Bitte ^1loggen Sie sich ein^2 oder ^3registrieren Sie sich^4, um diese Abfrage (Captcha) zu vermeiden.',
 		'feed_a_edited_prefix' => 'Antwort bearbeitet: ',
