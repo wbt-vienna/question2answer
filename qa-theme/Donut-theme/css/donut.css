@@ -1539,7 +1539,7 @@ header#nav-header {
   }
 }
 .qa-nav-footer {
-  font-size: 80%;
+  font-size: 100%;
 }
 .qa-nav-footer-list {
   float: left;
@@ -1548,7 +1548,6 @@ header#nav-header {
   padding: 0;
 }
 .qa-nav-footer-item {
-  float: left;
   padding: 0 15px 5px 0;
   margin-bottom: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
