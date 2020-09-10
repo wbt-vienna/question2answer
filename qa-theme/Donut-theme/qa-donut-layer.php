@@ -932,7 +932,7 @@
                 $this->footer_social_links();
             }
 
-            $this->output( '<div class="footer-bottom">' );
+            $this->output( '<div class="footer-bottom" style="font-size: 70%">' );
             $this->donut_attribution();
             parent::attribution();
 
