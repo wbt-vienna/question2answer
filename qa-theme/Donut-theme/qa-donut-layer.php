@@ -537,8 +537,8 @@
                                 <span class="glyphicon glyphicon-menu-hamburger"></span>
                             </button>
                         </div>
-                        <div class="col-sm-3 col-xs-8 logo-wrapper">
-                            <?php $this->logo(); ?>
+                        <div class="col-md-4 col-sm-6 col-xs-8 logo-wrapper">
+                            <?php $this->logo();?>
                         </div>
                         <div class="donut-navigation col-sm-2 col-xs-3 pull-right">
                             <?php $this->donut_user_drop_down(); ?>
