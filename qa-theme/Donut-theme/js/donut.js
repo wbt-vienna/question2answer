@@ -19,8 +19,6 @@ jQuery(document).ready(function () {
 	if (!!$selected_sub_nav.length) {
 		$selected_sub_nav.parent('li.qa-nav-sub-item').addClass('active');
 	};
-	
-	$('.qa-logo-link').removeAttr('title');
 
 	$('[title]').not('[class|="qa-vote"]').tooltip({
 		placement : 'bottom'
