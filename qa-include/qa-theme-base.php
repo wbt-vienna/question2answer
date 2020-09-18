@@ -315,7 +315,7 @@ class qa_html_theme_base
 
 	public function head_links()
 	{
-        $this->output('<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">');
+        $this->output('<link rel="shortcut icon" type="image/x-icon" href="' . qa_path_to_root() . 'img/favicon.ico">');
 		if (isset($this->content['canonical'])) {
 			$this->output('<link rel="canonical" href="' . $this->content['canonical'] . '"/>');
 		}
