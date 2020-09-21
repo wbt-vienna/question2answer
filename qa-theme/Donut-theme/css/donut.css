@@ -312,12 +312,19 @@ header#nav-header {
     .navbar .logo-wrapper {
         height: 50px;
     }
+    header .navbar .container {
+        display: flex;
+        flex-wrap: wrap;
+    }
     header .navbar .container .logo-wrapper {
         flex-grow: 1;
     }
     header .navbar .container .qa-logo {
         display: flex;
         justify-content: center;
+    }
+    header .navbar .container .navbar-collapse {
+        flex-grow: 1;
     }
     .navbar .qa-logo-link {
         font-size: 25px;
