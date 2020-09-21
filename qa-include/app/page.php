@@ -736,11 +736,14 @@ function qa_content_prepare($voting = false, $categoryids = array())
 	$logoheight = qa_opt('logo_height');
 
 	if ($logoshow) {
-		$qa_content['logo'] = '<a href="https://wbt.wien/" title="Projektseite Wissensdrehscheibe" class="qa-logo-link" target="_blank"><img aria-hidden="true" src="' . qa_path_to_root() . 'img/prepart.png"/></a>' .
+		$qa_content['logo'] = '<a href="https://wbt.wien/" title="Projektseite Wissensdrehscheibe" class="qa-logo-link" target="_blank">' .
+            '<img aria-hidden="true" class="hidden-xs" src="' . qa_path_to_root() . 'img/prepart.png"/>' .
+            '<img aria-hidden="true" class="hidden-sm hidden-md hidden-lg" src="' . qa_path_to_root() . 'img/prepart50.png"/>' .
+            '</a>' .
             '<a href="' . qa_path_html('') . '" class="qa-logo-link" title="Barrierefreiheit Q&A Home">' .
-			'<img aria-hidden="true" src="' . qa_path_to_root() . 'img/q_and_a.png"' .
-			($logowidth ? (' width="' . $logowidth . '"') : '') . ($logoheight ? (' height="' . $logoheight . '"') : '') .
-			' alt="' . qa_html(qa_opt('site_title')) . '"/></a>';
+			'<img aria-hidden="true" class="hidden-xs" src="' . qa_path_to_root() . 'img/q_and_a.png"/>' .
+			'<img aria-hidden="true" class="hidden-sm hidden-md hidden-lg" src="' . qa_path_to_root() . 'img/q_and_a50.png"/>' .
+            '</a>';
 	} else {
 		$qa_content['logo'] = '<a href="' . qa_path_html('') . '" class="qa-logo-link">' . qa_html(qa_opt('site_title')) . '</a>';
 	}
