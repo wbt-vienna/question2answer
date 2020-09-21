@@ -312,9 +312,6 @@ header#nav-header {
     .navbar .logo-wrapper {
         height: 50px;
     }
-    header .navbar .container {
-        display: flex;
-    }
     header .navbar .container .logo-wrapper {
         flex-grow: 1;
     }
