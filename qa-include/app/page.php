@@ -737,10 +737,10 @@ function qa_content_prepare($voting = false, $categoryids = array())
 
 	if ($logoshow) {
 		$qa_content['logo'] = '<a href="https://wbt.wien/" title="Projektseite Wissensdrehscheibe" class="qa-logo-link" target="_blank">' .
-            '<img aria-hidden="true" src="' . qa_path_to_root() . 'img/prepart.png"/>' .
+            '<img aria-hidden="true" src="' . qa_path_to_root() . 'img/prepart.svg"/>' .
             '</a>' .
             '<a href="' . qa_path_html('') . '" class="qa-logo-link" title="Barrierefreiheit Q&A Home">' .
-			'<img aria-hidden="true" src="' . qa_path_to_root() . 'img/q_and_a.png"/>' .
+			'<img aria-hidden="true" src="' . qa_path_to_root() . 'img/q_and_a.svg"/>' .
             '</a>';
 	} else {
 		$qa_content['logo'] = '<a href="' . qa_path_html('') . '" class="qa-logo-link">' . qa_html(qa_opt('site_title')) . '</a>';
