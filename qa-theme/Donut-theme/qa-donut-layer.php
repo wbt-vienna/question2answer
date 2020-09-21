@@ -540,7 +540,7 @@
                         <div class="col-md-4 col-sm-6 col-xs-8 logo-wrapper">
                             <?php $this->logo();?>
                         </div>
-                        <div class="donut-navigation col-sm-2 col-xs-3 pull-right">
+                        <div class="donut-navigation col-sm-2 pull-right">
                             <?php $this->donut_user_drop_down(); ?>
                         </div>
                         <div class="col-sm-7 navbar-collapse collapse main-nav navbar-left">

@@ -306,28 +306,38 @@ header#nav-header {
   border-width: 0;
 }
 @media only screen and (max-width: 767px) {
-  .navbar {
-    text-align: center;
-  }
-  .navbar .logo-wrapper {
-    height: 50px;
-  }
-  .navbar .qa-logo-link {
-    font-size: 25px;
-    padding-top: 15px;
-    line-height: 50px;
-  }
-  .navbar .qa-logo-link img {
-    display: inline-block;
-    max-height: 50px;
-  }
-  .navbar .qa-logo {
-    text-align: right;
-  }
+    .navbar {
+        text-align: center;
+    }
+    .navbar .logo-wrapper {
+        height: 50px;
+    }
+    header .navbar .container {
+        display: flex;
+    }
+    header .navbar .container .logo-wrapper {
+        flex-grow: 1;
+    }
+    header .navbar .container .qa-logo {
+        display: flex;
+        justify-content: center;
+    }
+    .navbar .qa-logo-link {
+        font-size: 25px;
+        line-height: 50px;
+    }
+    .navbar .qa-logo-link img {
+        display: inline-block;
+        max-height: 50px;
+    }
+
+    .navbar .qa-logo {
+        text-align: right;
+    }
 }
 /* Navigation */
 .navbar-toggle {
-  margin: 5px 0 5px 8px;
+  margin: 5px 0 5px 25px;
   font-size: 20px;
   float: left;
 }
