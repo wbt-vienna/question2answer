@@ -31,7 +31,7 @@ if (!defined('QA_VERSION')) { // don't allow this page to be requested directly 
 function getConstantFn($key) {
     return $GLOBALS[$key] ? $GLOBALS[$key] : $_SESSION[$key];
 };
-$allTagsString = file_get_contents("https://tags.asterics-foundation.org:4000/tags", 0, stream_context_create(["http" => ["timeout" => 1]]));
+$allTagsString = file_get_contents("https://couchdb.asterics-foundation.org:4000/tags", 0, stream_context_create(["http" => ["timeout" => 1]]));
 $allTagsString = $allTagsString ? $allTagsString : QA_ALL_TAGS_STRING_FALLBACK;
 $GLOBALS['qa_all_tags'] = array_column(json_decode($allTagsString), NULL, 'id');
 $GLOBALS['qa_all_tags_de'] = array_column(json_decode($allTagsString), 'labelDE');

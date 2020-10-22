@@ -1212,7 +1212,7 @@ function qa_db_tag_recent_qs_selectspec($voteuserid, $tag, $start, $full = false
 {
     $tagids = array($tag);
     if (isset($GLOBALS['qa_all_tags'][$tag])) {
-        $taglist = json_decode(file_get_contents("https://tags.asterics-foundation.org:4000/tag/$tag/selfandchildren/", 0, stream_context_create(["http" => ["timeout" => 1]])));
+        $taglist = json_decode(file_get_contents("https://couchdb.asterics-foundation.org:4000/tag/$tag/selfandchildren/", 0, stream_context_create(["http" => ["timeout" => 1]])));
         $func = function($value) { return $value->id; };
         $tagids = array_map($func, $taglist);
     }
