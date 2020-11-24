@@ -652,7 +652,9 @@ class qa_html_theme_base
 				(@$navlink['selected'] ? (' qa-' . $class . '-selected') : '') .
 				(@$navlink['favorited'] ? (' qa-' . $class . '-favorited') : '') .
 				'"' . (strlen(@$navlink['popup']) ? (' title="' . $navlink['popup'] . '"') : '') .
-				(isset($navlink['target']) ? (' target="' . $navlink['target'] . '"') : '') . '>' . $navlink['label'] .
+				(isset($navlink['target']) ? (' target="' . $navlink['target'] . '"') : '') .
+                (@$navlink['external'] ? (' rel="noreferrer"') : '') .
+                '>' . $navlink['label'] .
 				'</a>'
 			);
 		} else {

@@ -685,7 +685,7 @@ function qa_content_prepare($voting = false, $categoryids = array())
 	foreach ($navpages as $page) {
 		if ($page['nav'] == 'M' || $page['nav'] == 'O' || $page['nav'] == 'F') {
 			$loc = ($page['nav'] == 'F') ? 'footer' : 'main';
-			qa_navigation_add_page($qa_content['navigation'][$loc], $page, 'link');
+			qa_navigation_add_page($qa_content['navigation'][$loc], $page, 'link', true);
 		}
 	}
 
@@ -736,7 +736,7 @@ function qa_content_prepare($voting = false, $categoryids = array())
 	$logoheight = qa_opt('logo_height');
 
 	if ($logoshow) {
-		$qa_content['logo'] = '<a href="https://wbt.wien/" title="Projektseite Wissensdrehscheibe" class="qa-logo-link" target="_blank">' .
+		$qa_content['logo'] = '<a href="https://wbt.wien/" title="Projektseite Wissensdrehscheibe" class="qa-logo-link" target="_blank" rel="noreferrer">' .
             '<img aria-hidden="true" src="' . qa_path_to_root() . 'img/prepart.svg"/>' .
             '</a>' .
             '<a href="' . qa_path_html('') . '" class="qa-logo-link" title="Barrierefreiheit Q&A Home">' .
