@@ -1597,13 +1597,14 @@ function qa_custom_page_url($page)
  * @param $navigation
  * @param $page
  */
-function qa_navigation_add_page(&$navigation, $page)
+function qa_navigation_add_page(&$navigation, $page, $role)
 {
 	if (!isset($page['permit']) || !qa_permit_value_error($page['permit'], qa_get_logged_in_userid(), qa_get_logged_in_level(), qa_get_logged_in_flags())) {
 		$url = qa_custom_page_url($page);
 
 		$navigation[($page['flags'] & QA_PAGE_FLAGS_EXTERNAL) ? ('custom-' . $page['pageid']) : ($page['tags'] . '$')] = array(
-			'url' => qa_html($url),
+            'role' => isset($role) ? $role : null,
+		    'url' => qa_html($url),
 			'label' => qa_html($page['title']),
 			'opposite' => ($page['nav'] == 'O'),
 			'target' => ($page['flags'] & QA_PAGE_FLAGS_NEW_WINDOW) ? '_blank' : null,

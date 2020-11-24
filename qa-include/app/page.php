@@ -685,7 +685,7 @@ function qa_content_prepare($voting = false, $categoryids = array())
 	foreach ($navpages as $page) {
 		if ($page['nav'] == 'M' || $page['nav'] == 'O' || $page['nav'] == 'F') {
 			$loc = ($page['nav'] == 'F') ? 'footer' : 'main';
-			qa_navigation_add_page($qa_content['navigation'][$loc], $page);
+			qa_navigation_add_page($qa_content['navigation'][$loc], $page, 'link');
 		}
 	}
 
