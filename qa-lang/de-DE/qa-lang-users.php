@@ -129,7 +129,7 @@
 		'send_reset_button' => 'Neues Passwort schicken',
 		'send_reset_note' => 'Ihnen wird per E-Mail eine Anleitung geschickt.',
 		'special_users' => 'Besondere Konten',
-		'terms_not_accepted' => 'Sie müssen das ankreuzen.',
+		'terms_not_accepted' => 'Bitte akzeptieren Sie die Datenschutzbestimmungen.',
 		'unblock_user_button' => 'Konto entsperren',
 		'unsubscribe' => 'Austragen:',
 		'unsubscribe_complete' => 'Sie wurden von Rundschreiben von ^0 ausgenommen. Sie können sich jederzeit auf Ihrer ^1Konto-Seite^2 wieder dafür anmelden.',

@@ -74,7 +74,7 @@ return array(
 	'confirm_user_required' => 'Alle neuen Nutzer müssen ihre E-Mail bestätigen:',
 	'custom_home_content' => 'Inhalt der Homepage - HTML erlaubt:',
 	'custom_home_heading' => 'Überschrift der Homepage:',
-	'default_privacy' => 'Datenschutz: Ihre E-Mail-Adresse wird nicht an Dritte weitergegeben oder verkauft.',
+	'default_privacy' => 'Datenschutz: Ihre E-Mail-Adresse wird nicht an Dritte weitergegeben.',
 	'default_sidebar' => 'Willkommen bei ^, wo Sie Fragen stellen und Antworten von anderen Mitgliedern der Gemeinschaft erhalten können.',
 	'default_subject' => 'Eine Nachricht von ^',
 	'default_suffix' => 'Q&A',
