@@ -228,6 +228,7 @@ if ($show_terms) {
 		'label' => trim(qa_opt('register_terms')),
 		'tags' => 'name="terms" id="terms"',
 		'value' => qa_html(@$interms),
+		'id' => 'terms',
 		'error' => qa_html(@$errors['terms']),
 	);
 }
